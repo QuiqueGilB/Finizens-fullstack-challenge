@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+
+    nginx:
+        container_name: finizens-nginx
+        image: nginx:stable-alpine
+        volumes:
+            - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 5500:80
+        environment:
+            PHP_HOST: php
+            PHP_PORT: 9000
+        links:
+            - php
+
+
+    php:
+        container_name: finizens-php
+        image: php:8.0.2-fpm-alpine
+        volumes:
+            - .:/var/www
+        ports:
+            - 5501:9000
+        links:
+            - db-main
+
+
+    db-main:
+        container_name: finizens-db-main
+        image: mariadb:10.5
+        volumes:
+            - volume-db-main:/var/lib/mysql
+        ports:
+            - 5502:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: finizens
+            MYSQL_DATABASE: finizens
+            MYSQL_USER: finizens
+            MYSQL_PASSWORD: finizens
+
+    composer:
+        container_name: finizens-composer
+        image: composer:latest
+        volumes:
+            - .:/app
+        command: install
+
+volumes:
+    volume-db-main:
