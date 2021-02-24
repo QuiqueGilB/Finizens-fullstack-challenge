@@ -1,0 +1,5 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FinizensChallenge\Tests\Features\FeatureApiContext
