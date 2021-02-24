@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\WalletModule\Wallet\Infrastructure\Controllers\Api;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Wallet\Infrastructure\Controllers\Api;
 
 use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\AbstractApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
