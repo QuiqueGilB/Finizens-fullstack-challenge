@@ -11,6 +11,26 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     FinizensChallenge\:
-        resource: '../src/*'
+        resource: '../src'
         exclude:
             - '../src/SharedContext/SymfonyModule/Kernel/Kernel.php'
+
+    controllers:
+        namespace: FinizensChallenge\
+        resource: '../src/**/Infrastructure/Controllers/'
+        tags: [ 'controller.service_arguments' ]
+
+    FinizensChallenge\SharedContext\CqrsModule\Command\Infrastructure\Tactician\TacticianCommandBus:
+        arguments:
+            - '@tactician.commandbus.command'
+
+    FinizensChallenge\SharedContext\CqrsModule\Query\Infrastructure\Tactician\TacticianQueryBus:
+        arguments:
+            - '@tactician.commandbus.query'
+
+    cqrs_handlers:
+        namespace: FinizensChallenge\
+        resource: "../src/**/Application/{Command,Query}/**/*Handler.php"
+        tags:
+            - { name: tactician.handler, typehints: true }
+
