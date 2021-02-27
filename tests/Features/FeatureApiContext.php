@@ -3,6 +3,7 @@
 namespace FinizensChallenge\Tests\Features;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 
 class FeatureApiContext implements Context
@@ -29,5 +30,21 @@ class FeatureApiContext implements Context
     public function theResponseShouldBeEmpty()
     {
         throw new \Behat\Behat\Tester\Exception\PendingException();
+    }
+
+    /**
+     * @When /^I send a GET request to "([^"]*)"$/
+     */
+    public function iSendAGETRequestTo($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^the response body should be:$/
+     */
+    public function theResponseBodyShouldBe(PyStringNode $string)
+    {
+        throw new PendingException();
     }
 }
