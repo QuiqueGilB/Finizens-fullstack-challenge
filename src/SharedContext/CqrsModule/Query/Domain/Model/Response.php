@@ -7,7 +7,7 @@ abstract class Response
 
     abstract public static function build($model): static;
 
-    public static function buildCollection($models): array
+    public static function buildCollection(array $models): array
     {
         $response = [];
         foreach ($models as $model) {
