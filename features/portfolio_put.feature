@@ -11,11 +11,11 @@ Feature: Create Portfolio
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
@@ -31,7 +31,7 @@ Feature: Create Portfolio
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2

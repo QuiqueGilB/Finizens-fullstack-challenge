@@ -11,11 +11,11 @@ Feature: Get portfolio
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
@@ -31,11 +31,11 @@ Feature: Get portfolio
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }

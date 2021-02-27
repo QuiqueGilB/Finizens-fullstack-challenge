@@ -11,11 +11,11 @@ Feature: Complete an active order
       "allocations": [
         {
           "id": 1,
-          "shares" 3
+          "shares": 3
         },
         {
           "id": 2,
-          "shares" 4
+          "shares": 4
         }
       ]
     }
@@ -61,7 +61,7 @@ Feature: Complete an active order
     Given I send a POST request to "/complete" with body:
     """
     {
-      "id": 1,
+      "id": 1
     }
     """
     Then the response status code should be 400
