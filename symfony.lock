@@ -47,6 +47,9 @@
     "league/tactician-logger": {
         "version": "v0.10.0"
     },
+    "quiquegilb/global-api-criteria": {
+        "version": "dev-main"
+    },
     "ramsey/collection": {
         "version": "1.1.3"
     },
