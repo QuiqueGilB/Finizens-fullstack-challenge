@@ -2,7 +2,8 @@
 
 namespace FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model;
 
-class Query
-{
+use FinizensChallenge\SharedContext\CqrsModule\Shared\Domain\CQRS;
 
+class Query extends CQRS
+{
 }

@@ -16,7 +16,7 @@ class TacticianQueryBus implements QueryBus
         $this->queryBus = $commandBus;
     }
 
-    public function handle(Query $query): QueryResponse
+    public function ask(Query $query): QueryResponse
     {
         return $this->queryBus->handle($query);
     }

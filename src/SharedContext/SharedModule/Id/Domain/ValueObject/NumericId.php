@@ -21,10 +21,13 @@ class NumericId extends Id
 
     public static function validate(int $id): void
     {
-        if ($id > 0) {
-            return;
+        if (0 >= $id) {
+            throw new InvalidNumericIdException($id);
         }
+    }
 
-        throw new InvalidNumericIdException($id);
+    public static function create(int $id = null): static
+    {
+        return new static($id ?? mt_rand(1));
     }
 }

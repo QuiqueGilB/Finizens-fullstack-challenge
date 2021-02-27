@@ -2,17 +2,8 @@
 
 namespace FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model;
 
-use DateTimeImmutable;
+use FinizensChallenge\SharedContext\CqrsModule\Shared\Domain\CQRS;
 
-class Command
+class Command extends CQRS
 {
-    private array $data;
-    private DateTimeImmutable $createdAt;
-
-    public function __construct(array $data = [])
-    {
-        $this->data = $data;
-        $this->createdAt = new DateTimeImmutable();
-    }
-
 }
