@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Porfolio\Domain\ValueObject;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\ValueObject;
 
 use FinizensChallenge\SharedContext\SharedModule\Shared\Domain\ValueObject\ValueObject;
 
@@ -13,4 +13,8 @@ class Shares extends ValueObject
         $this->value = $value;
     }
 
+    public function value(): int
+    {
+        return $this->value;
+    }
 }
