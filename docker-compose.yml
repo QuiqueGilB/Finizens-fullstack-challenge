@@ -40,6 +40,20 @@ services:
             MYSQL_USER: finizens
             MYSQL_PASSWORD: finizens
 
+
+    db-main-test:
+        container_name: finizens-db-main-test
+        image: mariadb:10.5
+        volumes:
+            - volume-db-main-test:/var/lib/mysql
+        ports:
+            - 5503:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: finizens
+            MYSQL_DATABASE: finizens
+            MYSQL_USER: finizens
+            MYSQL_PASSWORD: finizens
+
     composer:
         container_name: finizens-composer
         image: composer:latest
@@ -49,3 +63,4 @@ services:
 
 volumes:
     volume-db-main:
+    volume-db-main-test:
