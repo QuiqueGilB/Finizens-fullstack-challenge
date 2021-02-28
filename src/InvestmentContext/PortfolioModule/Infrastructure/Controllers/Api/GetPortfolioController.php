@@ -24,6 +24,6 @@ class GetPortfolioController extends BaseApiController
         $query = FindPortfolioByIdQuery::create($portfolioId);
         $queryResponse = $this->queryBus->handle($query);
 
-        return new JsonResponse($queryResponse);
+        return new JsonResponse($queryResponse->data());
     }
 }
