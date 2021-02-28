@@ -43,6 +43,6 @@ Feature: Create Portfolio
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PATCH request to "/portfolio" with body:
+    Given I send a PATCH request to "/portfolio"
     Then the response status code should be 405
     And the response should be empty

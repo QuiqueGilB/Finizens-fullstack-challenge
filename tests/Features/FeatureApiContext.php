@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FeatureApiContext extends WebTestCase implements Context
 {
-    private KernelBrowser $client;
+    private  static KernelBrowser $client;
     private Response $response;
 
     protected static function getKernelClass(): string
@@ -19,19 +19,19 @@ class FeatureApiContext extends WebTestCase implements Context
         return Kernel::class;
     }
 
-    /** @BeforeScenario */
-    public function prepareForTheScenario()
+    /** @BeforeFeature */
+    public static function prepareForTheScenario()
     {
-        $this->client = static::createClient();
+        self::$client = static::createClient();
     }
 
     /**
      * @Given /^I send a (\w+) request to "([^"]*)" with body:$/
      */
-    public function iSendARequestToWithBody(string $requestMethod, string $requestUrl, PyStringNode $requestBody)
+    public function iSendARequestToWithBody(string $requestMethod, string $requestUrl, ?PyStringNode $requestBody)
     {
-        $this->client->request($requestMethod, $requestUrl, [], [], [], $requestBody->getRaw());
-        $this->response = $this->client->getResponse();
+        static::$client->request($requestMethod, $requestUrl, [], [], [], $requestBody->getRaw());
+        $this->response = self::$client->getResponse();
     }
 
     /**
@@ -39,8 +39,8 @@ class FeatureApiContext extends WebTestCase implements Context
      */
     public function iSendARequestTo(string $requestMethod, string $requestUrl)
     {
-        $this->client->request($requestMethod, $requestUrl);
-        $this->response = $this->client->getResponse();
+        self::$client->request($requestMethod, $requestUrl);
+        $this->response = self::$client->getResponse();
     }
 
 

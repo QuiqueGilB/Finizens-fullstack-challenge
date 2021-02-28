@@ -53,7 +53,7 @@ Feature: Complete an active order
     And the response should be empty
 
   Scenario: Invalid Method
-    Given I send a PUT request to "/complete" with body:
+    Given I send a PUT request to "/complete"
     Then the response status code should be 405
     And the response should be empty
 
