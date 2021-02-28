@@ -1,0 +1,12 @@
+<doctrine-mapping>
+    <entity name="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio"
+            table="investmentcontext_portfoliomodule_portfolio"
+    >
+        <id name="id" type="integer"/>
+
+        <field name="createdAt" type="datetime"/>
+        <field name="updatedAt" type="datetime"/>
+        <field name="deletedAt" type="datetime" nullable ='true'/>
+
+    </entity>
+</doctrine-mapping>

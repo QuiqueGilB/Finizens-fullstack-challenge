@@ -1,0 +1,17 @@
+<doctrine-mapping>
+    <entity name="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation"
+            table="investmentcontext_portfoliomodule_allocation"
+    >
+        <id name="id" type="integer"/>
+
+        <embedded name="shares"
+                  class="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares"
+                  column-prefix="shares"
+        />
+
+        <field name="createdAt" type="datetime"/>
+        <field name="updatedAt" type="datetime"/>
+        <field name="deletedAt" type="datetime" nullable='true'/>
+
+    </entity>
+</doctrine-mapping>
