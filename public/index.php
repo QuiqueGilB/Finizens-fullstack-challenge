@@ -1,6 +1,6 @@
 <?php
 
-use FinizensChallenge\SharedContext\SymfonyModule\Kernel\Kernel;
+use FinizensChallenge\SharedContext\SymfonyModule\Infrastructure\Kernel\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;

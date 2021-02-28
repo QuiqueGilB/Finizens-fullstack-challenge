@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\SymfonyModule\Kernel;
+namespace FinizensChallenge\SharedContext\SymfonyModule\Infrastructure\Kernel;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -11,7 +11,7 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-    private const ROOT_PATH = __DIR__ . '/../../../..';
+    private const ROOT_PATH = __DIR__ . '/../../../../..';
 
 
     protected function configureContainer(ContainerConfigurator $container): void

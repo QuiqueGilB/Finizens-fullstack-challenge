@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\HttpModule\Request\Infrastructure\Request;
+namespace FinizensChallenge\SharedContext\HttpModule\Infrastructure\Request;
 
 use Symfony\Component\HttpFoundation\Request;
 

@@ -4,7 +4,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Con
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQuery;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryBus;
-use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\BaseApiController;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

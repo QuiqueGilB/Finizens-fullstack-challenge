@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers;
+namespace FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

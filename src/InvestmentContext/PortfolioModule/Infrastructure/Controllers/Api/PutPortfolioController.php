@@ -4,8 +4,8 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Con
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Create\CreatePortfolioCommand;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus;
-use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\BaseApiController;
-use FinizensChallenge\SharedContext\HttpModule\Request\Infrastructure\Request\SymfonyRequestService;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Request\SymfonyRequestService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

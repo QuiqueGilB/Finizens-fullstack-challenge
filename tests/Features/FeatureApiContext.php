@@ -4,7 +4,7 @@ namespace FinizensChallenge\Tests\Features;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
-use FinizensChallenge\SharedContext\SymfonyModule\Kernel\Kernel;
+use FinizensChallenge\SharedContext\SymfonyModule\Infrastructure\Kernel\Kernel;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;

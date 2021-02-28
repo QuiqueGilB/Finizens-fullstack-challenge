@@ -34,6 +34,6 @@ services:
         tags:
             - { name: tactician.handler, typehints: true }
 
-    FinizensChallenge\SharedContext\HttpModule\Response\Infrastructure\Listener\MakeResponseOnExceptionListener:
+    FinizensChallenge\SharedContext\HttpModule\Infrastructure\Listener\MakeResponseOnExceptionListener:
         tags:
             - { name: 'kernel.event_listener', event: 'kernel.exception',  method: onKernelException }
