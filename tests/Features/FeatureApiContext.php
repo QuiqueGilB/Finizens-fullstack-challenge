@@ -3,25 +3,54 @@
 namespace FinizensChallenge\Tests\Features;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
+use FinizensChallenge\SharedContext\SymfonyModule\Kernel\Kernel;
+use Psr\Http\Message\ResponseInterface;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
-class FeatureApiContext implements Context
+class FeatureApiContext extends WebTestCase implements Context
 {
+    private KernelBrowser $client;
+    private Response $response;
+
+    protected static function getKernelClass(): string
+    {
+        return Kernel::class;
+    }
+
+    /** @BeforeScenario */
+    public function prepareForTheScenario()
+    {
+        $this->client = static::createClient();
+    }
+
     /**
      * @Given /^I send a (\w+) request to "([^"]*)" with body:$/
      */
-    public function iSendARequestToWithBody(string $requestMethod, $requestUrl, PyStringNode $requestBody)
+    public function iSendARequestToWithBody(string $requestMethod, string $requestUrl, PyStringNode $requestBody)
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        $this->client->request($requestMethod, $requestUrl, [], [], [], $requestBody->getRaw());
+        $this->response = $this->client->getResponse();
     }
+
+    /**
+     * @When /^I send a (\w+) request to "([^"]*)"$/
+     */
+    public function iSendARequestTo(string $requestMethod, string $requestUrl)
+    {
+        $this->client->request($requestMethod, $requestUrl);
+        $this->response = $this->client->getResponse();
+    }
+
 
     /**
      * @Given /^the response status code should be (\d+)$/
      */
-    public function theResponseStatusCodeShouldBe($arg1)
+    public function theResponseStatusCodeShouldBe(int $statusCode)
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        self::assertEquals($statusCode, $this->response->getStatusCode());
     }
 
     /**
@@ -29,15 +58,7 @@ class FeatureApiContext implements Context
      */
     public function theResponseShouldBeEmpty()
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
-    }
-
-    /**
-     * @When /^I send a GET request to "([^"]*)"$/
-     */
-    public function iSendAGETRequestTo($arg1)
-    {
-        throw new PendingException();
+        self::assertEmpty($this->response->getContent());
     }
 
     /**
@@ -45,6 +66,6 @@ class FeatureApiContext implements Context
      */
     public function theResponseBodyShouldBe(PyStringNode $string)
     {
-        throw new PendingException();
+        self::assertEquals($string->getRaw(), $this->response->getContent());
     }
 }
