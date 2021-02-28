@@ -6,6 +6,14 @@ use FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model\Command;
 
 class CreatePortfolioCommand extends Command
 {
+    public static function create($portfolioId, $allocations): static
+    {
+        return parent::createFromArray([
+            'id' => $portfolioId,
+            'allocations' => $allocations
+        ]);
+    }
+
     public function portfolioId(): string
     {
         return $this->data['id'];

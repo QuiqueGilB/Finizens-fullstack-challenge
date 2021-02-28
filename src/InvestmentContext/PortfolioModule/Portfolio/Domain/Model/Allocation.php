@@ -1,8 +1,8 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Porfolio\Domain\Model;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Porfolio\Domain\ValueObject\Shares;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Entity\Domain\Model\Entity;
 use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
 

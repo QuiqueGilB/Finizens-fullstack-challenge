@@ -15,7 +15,7 @@ class TacticianCommandBus implements CommandBusInterface
         $this->commandBus = $commandBus;
     }
 
-    public function run(Command $command): void
+    public function handle(Command $command): void
     {
         $this->commandBus->handle($command);
     }

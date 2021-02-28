@@ -13,7 +13,7 @@ class CreatePortfolioCommandHandler
     ) {
     }
 
-    public function run(CreatePortfolioCommand $command): void
+    public function handle(CreatePortfolioCommand $command): void
     {
         $portfolioId = NumericId::create($command->portfolioId());
         $portfolio = new Portfolio($portfolioId);

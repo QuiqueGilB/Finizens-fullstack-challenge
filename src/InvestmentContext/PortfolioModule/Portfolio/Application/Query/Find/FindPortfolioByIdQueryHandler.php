@@ -2,7 +2,6 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Query\Find;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Exception\PortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model\PortfolioRepository;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Response\PortfolioResponse;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryMetadata;
@@ -16,7 +15,7 @@ class FindPortfolioByIdQueryHandler
     ) {
     }
 
-    public function ask(FindPortfolioByIdQuery $query): QueryResponse
+    public function handle(FindPortfolioByIdQuery $query): QueryResponse
     {
         $portfolioId = new NumericId($query->portfolioId());
 
@@ -26,7 +25,6 @@ class FindPortfolioByIdQueryHandler
             PortfolioResponse::build($portfolio),
             QueryMetadata::create(0, 0, 1)
         );
-
     }
 
 }

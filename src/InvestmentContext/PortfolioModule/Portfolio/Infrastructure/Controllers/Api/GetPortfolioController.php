@@ -2,7 +2,6 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Infrastructure\Controllers\Api;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Command\Create\CreatePortfolioCommand;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Query\Find\FindPortfolioByIdQuery;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryBus;
 use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\BaseApiController;
@@ -22,9 +21,8 @@ class GetPortfolioController extends BaseApiController
         Request $request,
         string $portfolioId
     ): JsonResponse {
-
         $query = FindPortfolioByIdQuery::create($portfolioId);
-        $queryResponse = $this->queryBus->ask($query);
+        $queryResponse = $this->queryBus->handle($query);
 
         return new JsonResponse($queryResponse);
     }
