@@ -8,8 +8,8 @@ use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Response;
 class AllocationResponse extends Response
 {
     public function __construct(
-        private int $id,
-        private int $shares
+        protected int $id,
+        protected int $shares
     ) {
     }
 

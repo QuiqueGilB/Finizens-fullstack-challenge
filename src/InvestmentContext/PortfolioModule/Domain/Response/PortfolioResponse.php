@@ -8,8 +8,8 @@ use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Response;
 class PortfolioResponse extends Response
 {
     public function __construct(
-        private int $id,
-        private array $allocations
+        protected int $id,
+        protected array $allocations
     ) {
     }
 
@@ -21,5 +21,4 @@ class PortfolioResponse extends Response
             AllocationResponse::buildCollection($model->allocations())
         );
     }
-
 }

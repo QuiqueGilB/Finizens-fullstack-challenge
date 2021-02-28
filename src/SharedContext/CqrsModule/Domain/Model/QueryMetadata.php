@@ -3,9 +3,10 @@
 namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 use JetBrains\PhpStorm\Pure;
+use JsonSerializable;
 use QuiqueGilB\GlobalApiCriteria\QueryResponseModule\Metadata\Domain\ValueObject\QueryMetadata as QuiqueGilBQueryMetadata;
 
-class QueryMetadata extends QuiqueGilBQueryMetadata
+class QueryMetadata extends QuiqueGilBQueryMetadata implements JsonSerializable
 {
 
     #[Pure] public static function unique(): static
@@ -18,4 +19,13 @@ class QueryMetadata extends QuiqueGilBQueryMetadata
         return new static($offset, $limit, $total);
     }
 
+    public function jsonSerialize()
+    {
+        return [
+            'offset' => $this->offset(),
+            'limit' => $this->limit(),
+            'items' => $this->items(),
+            'total' => $this->total(),
+        ];
+    }
 }
