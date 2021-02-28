@@ -4,6 +4,9 @@ doctrine:
         connections:
             default:
                 url: '%env(resolve:DB_MAIN_DSN)%'
+        types:
+            numeric_id: FinizensChallenge\SharedContext\SharedModule\Infrastructure\Persistance\Doctrine\Type\NumericIdType
+            uuid: FinizensChallenge\SharedContext\SharedModule\Infrastructure\Persistance\Doctrine\Type\UuidType
 
     orm:
         auto_generate_proxy_classes: true

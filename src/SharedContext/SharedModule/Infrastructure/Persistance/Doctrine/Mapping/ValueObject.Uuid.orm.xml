@@ -1,0 +1,5 @@
+<doctrine-mapping>
+    <embeddable name="FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid">
+        <field name="value" type="string" lenght="36"/>
+    </embeddable>
+</doctrine-mapping>

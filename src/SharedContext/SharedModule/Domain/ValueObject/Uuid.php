@@ -32,5 +32,9 @@ class Uuid extends Id
         return new static($uuid ?? RamseyUuid::uuid4()->toString());
     }
 
+    public function __toString(): string
+    {
+        return $this->value;
+    }
 
 }

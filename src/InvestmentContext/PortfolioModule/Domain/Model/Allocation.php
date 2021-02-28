@@ -9,15 +9,18 @@ use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 class Allocation
 {
     private NumericId $id;
+    private Portfolio $portfolio;
+
     private Shares $shares;
 
     private DateTimeImmutable $createdAt;
     private DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $deletedAt;
 
-    public function __construct(NumericId $id, Shares $shares)
+    public function __construct(NumericId $id, Portfolio $portfolio, Shares $shares)
     {
         $this->id = $id;
+        $this->portfolio = $portfolio;
         $this->shares = $shares;
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
@@ -26,6 +29,11 @@ class Allocation
     public function id(): NumericId
     {
         return $this->id;
+    }
+
+    public function portfolio(): Portfolio
+    {
+        return $this->portfolio;
     }
 
     public function shares(): Shares

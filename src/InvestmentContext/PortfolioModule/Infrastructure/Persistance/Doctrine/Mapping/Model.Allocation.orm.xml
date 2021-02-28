@@ -2,16 +2,21 @@
     <entity name="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation"
             table="investmentcontext_portfoliomodule_allocation"
     >
-        <id name="id" type="integer"/>
+        <id name="id" type="numeric_id"/>
 
         <embedded name="shares"
                   class="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares"
                   column-prefix="shares"
         />
 
-        <field name="createdAt" type="datetime"/>
-        <field name="updatedAt" type="datetime"/>
-        <field name="deletedAt" type="datetime" nullable='true'/>
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="updatedAt" type="datetime_immutable"/>
+        <field name="deletedAt" type="datetime_immutable" nullable='true'/>
+
+        <many-to-one field="portfolio"
+                     target-entity="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio"
+                     inversed-by="allocations"
+        />
 
     </entity>
 </doctrine-mapping>

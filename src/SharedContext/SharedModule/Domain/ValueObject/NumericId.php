@@ -30,4 +30,8 @@ class NumericId extends Id
     {
         return new static($id ?? mt_rand(1));
     }
+    public function __toString(): string
+    {
+        return $this->value;
+    }
 }

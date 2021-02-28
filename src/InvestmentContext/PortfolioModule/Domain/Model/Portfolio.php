@@ -3,30 +3,43 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Portfolio
 {
     private NumericId $id;
-
-    /** @var Allocation[] */
-    private array $allocations;
+    private Collection $allocations;
 
     private DateTimeImmutable $createdAt;
     private DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $deletedAt;
 
-    public function __construct(NumericId $id, Allocation ...$allocations)
+    public function __construct(NumericId $id)
     {
         $this->id = $id;
-        $this->allocations = $allocations;
         $this->createdAt = new DateTimeImmutable();
+        $this->doUpdate();
+    }
+
+    public function update(?Allocation ...$allocations): self
+    {
+        $this->doUpdate(...$allocations);
+        return $this;
+    }
+
+    public function doUpdate(?Allocation ...$allocations)
+    {
+        $this->allocations = new ArrayCollection($allocations ?? []);
         $this->updatedAt = new DateTimeImmutable();
     }
 
+
+    /** @return Allocation[] */
     public function allocations(): array
     {
-        return $this->allocations;
+        return $this->allocations->toArray();
     }
 
     public function id(): NumericId

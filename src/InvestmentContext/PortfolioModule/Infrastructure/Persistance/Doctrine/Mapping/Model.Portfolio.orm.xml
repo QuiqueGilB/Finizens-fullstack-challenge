@@ -2,11 +2,20 @@
     <entity name="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio"
             table="investmentcontext_portfoliomodule_portfolio"
     >
-        <id name="id" type="integer"/>
+        <id name="id" type="numeric_id"/>
 
-        <field name="createdAt" type="datetime"/>
-        <field name="updatedAt" type="datetime"/>
-        <field name="deletedAt" type="datetime" nullable ='true'/>
+        <one-to-many field="allocations"
+                     target-entity="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation"
+                     mapped-by="portfolio"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="updatedAt" type="datetime_immutable"/>
+        <field name="deletedAt" type="datetime_immutable" nullable="true"/>
 
     </entity>
 </doctrine-mapping>

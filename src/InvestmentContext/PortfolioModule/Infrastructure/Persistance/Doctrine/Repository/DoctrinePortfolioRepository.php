@@ -18,7 +18,7 @@ class DoctrinePortfolioRepository extends ServiceEntityRepository implements Por
 
     public function byId(NumericId $portfolioId): ?Portfolio
     {
-        return $this->find($portfolioId->value());
+        return $this->find($portfolioId);
     }
 
     public function byIdOrFail(NumericId $portfolioId): Portfolio
