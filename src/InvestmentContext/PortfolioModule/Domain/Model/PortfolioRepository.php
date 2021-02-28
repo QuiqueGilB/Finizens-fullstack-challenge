@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Response;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model\Allocation;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\Response;
 
 class AllocationResponse extends Response

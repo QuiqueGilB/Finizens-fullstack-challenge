@@ -1,9 +1,9 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Command\Create;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Create;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model\Portfolio;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model\PortfolioRepository;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
 use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
 
 class CreatePortfolioCommandHandler

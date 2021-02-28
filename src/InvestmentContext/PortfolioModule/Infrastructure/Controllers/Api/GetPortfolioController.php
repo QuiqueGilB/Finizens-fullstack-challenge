@@ -1,8 +1,8 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Infrastructure\Controllers\Api;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Controllers\Api;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Query\Find\FindPortfolioByIdQuery;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQuery;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryBus;
 use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\BaseApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;

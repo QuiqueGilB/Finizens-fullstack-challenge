@@ -1,28 +1,36 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\SharedModule\Entity\Domain\Model;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\Id;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares;
+use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
 
-abstract class Entity
+class Allocation
 {
-    private Id $id;
+    private NumericId $id;
+    private Shares $shares;
 
     private DateTimeImmutable $createdAt;
     private DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $deletedAt;
 
-    public function __construct(Id $id)
+    public function __construct(NumericId $id, Shares $shares)
     {
         $this->id = $id;
+        $this->shares = $shares;
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
     }
 
-    public function id(): Id
+    public function id(): NumericId
     {
         return $this->id;
+    }
+
+    public function shares(): Shares
+    {
+        return $this->shares;
     }
 
     public function createdAt(): DateTimeImmutable

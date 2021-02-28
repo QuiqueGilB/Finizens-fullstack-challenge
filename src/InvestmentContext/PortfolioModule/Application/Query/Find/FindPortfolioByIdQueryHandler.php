@@ -1,9 +1,9 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Query\Find;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Model\PortfolioRepository;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Response\PortfolioResponse;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response\PortfolioResponse;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryMetadata;
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryResponse;
 use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;

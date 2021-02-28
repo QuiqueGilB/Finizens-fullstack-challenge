@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Application\Query\Find;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find;
 
 use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\Query;
 

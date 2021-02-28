@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Portfolio\Domain\Exception;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception;
 
 use FinizensChallenge\SharedContext\SharedModule\Shared\Domain\Exception\FinizensException;
 
