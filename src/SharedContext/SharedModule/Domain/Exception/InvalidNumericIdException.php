@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\SharedModule\Id\Domain\Exception;
+namespace FinizensChallenge\SharedContext\SharedModule\Domain\Exception;
 
 class InvalidNumericIdException extends InvalidIdException
 {

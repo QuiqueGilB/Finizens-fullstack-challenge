@@ -4,7 +4,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Allocation
 {

@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject;
 
-use FinizensChallenge\SharedContext\SharedModule\Shared\Domain\ValueObject\ValueObject;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\ValueObject;
 
 class Shares extends ValueObject
 {

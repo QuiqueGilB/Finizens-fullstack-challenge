@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 interface PortfolioRepository
 {

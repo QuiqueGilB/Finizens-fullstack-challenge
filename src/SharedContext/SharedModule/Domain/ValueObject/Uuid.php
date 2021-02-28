@@ -1,8 +1,8 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject;
+namespace FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject;
 
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\Exception\InvalidUuidException;
+use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\InvalidUuidException;
 use Ramsey\Uuid\Uuid as RamseyUuid;
 
 class Uuid extends Id

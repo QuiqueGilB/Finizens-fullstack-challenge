@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception;
 
-use FinizensChallenge\SharedContext\SharedModule\Shared\Domain\Exception\FinizensException;
+use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\FinizensException;
 
 class PortfolioNotFoundException extends FinizensException
 {

@@ -4,7 +4,7 @@ namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 use DateTime;
 use DateTimeImmutable;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\Uuid;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 
 abstract class CQRS
 {

@@ -3,7 +3,7 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Portfolio
 {

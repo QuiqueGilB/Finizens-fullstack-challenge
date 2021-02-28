@@ -1,8 +1,8 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject;
+namespace FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject;
 
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\Exception\InvalidNumericIdException;
+use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\InvalidNumericIdException;
 
 class NumericId extends Id
 {

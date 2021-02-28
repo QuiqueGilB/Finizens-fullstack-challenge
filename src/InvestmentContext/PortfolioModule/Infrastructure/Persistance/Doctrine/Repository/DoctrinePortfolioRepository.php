@@ -7,7 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception\PortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class DoctrinePortfolioRepository extends ServiceEntityRepository implements PortfolioRepository
 {

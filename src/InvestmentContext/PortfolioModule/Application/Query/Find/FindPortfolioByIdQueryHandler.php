@@ -6,7 +6,7 @@ use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRe
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response\PortfolioResponse;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryMetadata;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryResponse;
-use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
+use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class FindPortfolioByIdQueryHandler
 {
