@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find;
 
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\Query;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Query;
 
 class FindPortfolioByIdQuery extends Query
 {

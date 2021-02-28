@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model;
+namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 use QuiqueGilB\GlobalApiCriteria\QueryResponseModule\Data\Domain\ValueObject\QueryData as QuiqueGilBQueryData;
 

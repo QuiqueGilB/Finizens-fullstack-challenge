@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model;
+namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 use JetBrains\PhpStorm\Pure;
 use QuiqueGilB\GlobalApiCriteria\QueryResponseModule\Metadata\Domain\ValueObject\QueryMetadata as QuiqueGilBQueryMetadata;

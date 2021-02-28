@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model;
+namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 interface QueryBus
 {

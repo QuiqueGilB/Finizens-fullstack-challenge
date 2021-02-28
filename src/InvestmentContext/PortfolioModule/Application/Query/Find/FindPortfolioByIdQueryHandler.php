@@ -4,8 +4,8 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response\PortfolioResponse;
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryMetadata;
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryResponse;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryMetadata;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryResponse;
 use FinizensChallenge\SharedContext\SharedModule\Id\Domain\ValueObject\NumericId;
 
 class FindPortfolioByIdQueryHandler

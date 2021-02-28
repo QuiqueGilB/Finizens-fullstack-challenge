@@ -3,7 +3,7 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response;
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio;
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\Response;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Response;
 
 class PortfolioResponse extends Response
 {

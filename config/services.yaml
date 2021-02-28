@@ -20,11 +20,11 @@ services:
         resource: '../src/**/Infrastructure/Controllers/'
         tags: [ 'controller.service_arguments' ]
 
-    FinizensChallenge\SharedContext\CqrsModule\Command\Infrastructure\Tactician\TacticianCommandBus:
+    FinizensChallenge\SharedContext\CqrsModule\Infrastructure\Tactician\TacticianCommandBus:
         arguments:
             - '@tactician.commandbus.command'
 
-    FinizensChallenge\SharedContext\CqrsModule\Query\Infrastructure\Tactician\TacticianQueryBus:
+    FinizensChallenge\SharedContext\CqrsModule\Infrastructure\Tactician\TacticianQueryBus:
         arguments:
             - '@tactician.commandbus.query'
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Command\Infrastructure\Tactician;
+namespace FinizensChallenge\SharedContext\CqrsModule\Infrastructure\Tactician;
 
-use FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model\Command;
-use FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model\CommandBus as CommandBusInterface;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Command;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus as CommandBusInterface;
 use League\Tactician\CommandBus;
 
 class TacticianCommandBus implements CommandBusInterface

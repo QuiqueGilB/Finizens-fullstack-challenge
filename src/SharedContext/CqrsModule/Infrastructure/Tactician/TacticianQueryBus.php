@@ -1,10 +1,10 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Query\Infrastructure\Tactician;
+namespace FinizensChallenge\SharedContext\CqrsModule\Infrastructure\Tactician;
 
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\Query;
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryBus;
-use FinizensChallenge\SharedContext\CqrsModule\Query\Domain\Model\QueryResponse;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Query;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryBus;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryResponse;
 use League\Tactician\CommandBus;
 
 class TacticianQueryBus implements QueryBus

@@ -3,7 +3,7 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Controllers\Api;
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Create\CreatePortfolioCommand;
-use FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model\CommandBus;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus;
 use FinizensChallenge\SharedContext\HttpModule\Controller\Infrastructure\Controllers\BaseApiController;
 use FinizensChallenge\SharedContext\HttpModule\Request\Infrastructure\Request\SymfonyRequestService;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Create;
 
-use FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model\Command;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Command;
 
 class CreatePortfolioCommand extends Command
 {

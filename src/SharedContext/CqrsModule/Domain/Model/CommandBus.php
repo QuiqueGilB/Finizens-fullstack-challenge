@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Command\Domain\Model;
+namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 interface CommandBus
 {

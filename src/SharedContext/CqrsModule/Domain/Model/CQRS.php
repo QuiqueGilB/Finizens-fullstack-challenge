@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\SharedContext\CqrsModule\Shared\Domain;
+namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
 use DateTime;
 use DateTimeImmutable;
