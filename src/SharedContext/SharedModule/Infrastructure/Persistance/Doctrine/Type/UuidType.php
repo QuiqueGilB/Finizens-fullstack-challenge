@@ -26,4 +26,9 @@ class UuidType extends StringType
         return 'uuid';
     }
 
+    public function getDefaultLength(AbstractPlatform $platform): int
+    {
+        return 36;
+    }
+
 }

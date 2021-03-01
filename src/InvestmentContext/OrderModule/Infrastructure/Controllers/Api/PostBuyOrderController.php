@@ -4,10 +4,10 @@ namespace FinizensChallenge\InvestmentContext\OrderModule\Infrastructure\Control
 
 use FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Create\CreateOrder;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
+use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Request\SymfonyRequestService;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\EmptyResponse;
-use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,7 +24,7 @@ class PostBuyOrderController extends BaseApiController
         Request $request
     ) {
         $payload = $this->symfonyRequestService->bodyJson($request);
-        $payload['type'] = OrderType::buy()->value();
+        $payload['orderType'] = OrderType::buy()->value();
 
         $command = CreateOrder::createFromArray($payload);
         $this->commandBus->handle($command);

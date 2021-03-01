@@ -24,7 +24,7 @@ class PostSellOrderController extends BaseApiController
         Request $request
     ) {
         $payload = $this->symfonyRequestService->bodyJson($request);
-        $payload['type'] = OrderType::sell()->value();
+        $payload['orderType'] = OrderType::sell()->value();
 
         $command = CreateOrder::createFromArray($payload);
         $this->commandBus->handle($command);
