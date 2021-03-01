@@ -34,11 +34,11 @@ class OrderStatus extends ValueObject
 
     public static function pending(): static
     {
-        return new static(self::ACCEPTED['buy']);
+        return new static(self::ACCEPTED['pending']);
     }
 
     public static function completed(): static
     {
-        return new static(self::ACCEPTED['sell']);
+        return new static(self::ACCEPTED['completed']);
     }
 }
