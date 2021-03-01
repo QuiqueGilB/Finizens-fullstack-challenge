@@ -2,7 +2,9 @@
 
 namespace FinizensChallenge\SharedContext\HttpModule\Infrastructure\Listener;
 
-use Symfony\Component\HttpFoundation\Response;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\EmptyResponse;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\InvalidPayloadResponse;
+use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\ValidationException;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
@@ -12,7 +14,11 @@ class MakeResponseOnExceptionListener
     {
         // TODO: Create ExceptionResolverService
         if ($event->getThrowable() instanceof MethodNotAllowedHttpException) {
-            $event->setResponse(new Response("", 405));
+            $event->setResponse(new EmptyResponse( 405));
+        }
+
+        if ($event->getThrowable() instanceof ValidationException) {
+            $event->setResponse(new InvalidPayloadResponse());
         }
     }
 }
