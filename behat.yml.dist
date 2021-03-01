@@ -1,0 +1,20 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FinizensChallenge\Tests\Behat\FeatureApiContext
+#                - Behat\MinkExtension\Context\MinkContext
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
+            kernel:
+                class: FinizensChallenge\SharedContext\SymfonyModule\Infrastructure\Kernel\Kernel
+                path: src/SharedContext/SymfonyModule/Infrastructure/Kernel/Kernel.php
+                environment: test
+                debug: true
+
+        Behat\MinkExtension:
+            sessions:
+                symfony:
+                    symfony: ~

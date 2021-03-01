@@ -13,7 +13,7 @@ services:
     FinizensChallenge\:
         resource: '../src'
         exclude:
-            - '../src/SharedContext/SymfonyModule/Kernel/Kernel.php'
+            - '../src/SharedContext/SymfonyModule/Infrastructure/Kernel/Kernel.php'
 
     controllers:
         namespace: FinizensChallenge\
