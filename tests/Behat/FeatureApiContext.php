@@ -5,7 +5,6 @@ namespace FinizensChallenge\Tests\Behat;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use PHPUnit\Framework\Assert;
-use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -72,6 +71,9 @@ class FeatureApiContext implements Context
      */
     public function theResponseBodyShouldBe(PyStringNode $string)
     {
-        Assert::assertEquals($string->getRaw(), $this->response->getContent());
+        Assert::assertEquals(
+            json_decode($string->getRaw(), true, 512, JSON_THROW_ON_ERROR),
+            json_decode($this->response->getContent(), true, 512, JSON_THROW_ON_ERROR)
+        );
     }
 }
