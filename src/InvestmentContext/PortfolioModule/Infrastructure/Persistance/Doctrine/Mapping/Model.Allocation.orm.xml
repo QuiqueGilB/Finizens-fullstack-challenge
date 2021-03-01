@@ -5,7 +5,7 @@
         <id name="id" type="numeric_id"/>
 
         <embedded name="shares"
-                  class="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares"
+                  class="FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares"
                   column-prefix="shares"
         />
 
@@ -16,7 +16,17 @@
         <many-to-one field="portfolio"
                      target-entity="FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio"
                      inversed-by="allocations"
-        />
+                     orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+
+            <join-columns>
+                <join-column on-delete="CASCADE"/>
+            </join-columns>
+
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

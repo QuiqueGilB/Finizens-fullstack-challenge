@@ -5,7 +5,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Comman
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares;
+use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class CreatePortfolioCommandHandler
@@ -19,7 +19,12 @@ class CreatePortfolioCommandHandler
     {
         $portfolioId = NumericId::create($command->portfolioId());
 
-        $portfolio = new Portfolio($portfolioId);
+        $portfolio = $this->portfolioRepository->byId($portfolioId);
+
+        if(null === $portfolio) {
+            $portfolio = new Portfolio($portfolioId);
+        }
+
         $allocations = $this->buildAllocations($portfolio, $command->allocations());
         $portfolio->update(...$allocations);
 

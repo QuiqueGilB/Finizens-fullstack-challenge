@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject;
+namespace FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject;
 
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\ValueObject;
 

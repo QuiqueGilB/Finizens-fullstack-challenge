@@ -19,7 +19,7 @@ class Portfolio
     public function __construct(NumericId $id)
     {
         $this->id = $id;
-        $this->createdAt = new DateTimeImmutable();
+        $this->doUpdate([]);
         $this->doUpdate();
     }
 
@@ -29,14 +29,12 @@ class Portfolio
         return $this;
     }
 
-    public function doUpdate(?Allocation ...$allocations)
+    private function doUpdate(?Allocation ...$allocations): void
     {
-        $this->allocations = new ArrayCollection($allocations ?? []);
+        $this->allocations = new ArrayCollection($allocations);
         $this->updatedAt = new DateTimeImmutable();
     }
 
-
-    /** @return Allocation[] */
     public function allocations(): array
     {
         return $this->allocations->toArray();

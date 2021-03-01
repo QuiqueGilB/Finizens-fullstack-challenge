@@ -6,6 +6,7 @@ use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Crea
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Request\SymfonyRequestService;
+use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\EmptyResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +30,6 @@ class PutPortfolioController extends BaseApiController
 
         $this->commandBus->handle($command);
 
-        return new Response("");
+        return new EmptyResponse(200);
     }
 }

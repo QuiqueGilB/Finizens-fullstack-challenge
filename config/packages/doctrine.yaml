@@ -20,8 +20,32 @@ doctrine:
                 mappings:
                     FinizensChallenge\InvestmentContext\PortfolioModule:
                         is_bundle: false
-                        alias: FinizensChallange
+                        alias: FinizensChallange_InvestmentContext_PortfolioModule
                         type: xml
                         prefix: 'FinizensChallenge\InvestmentContext\PortfolioModule\Domain'
                         dir: '%kernel.project_dir%/src/InvestmentContext/PortfolioModule/Infrastructure/Persistance/Doctrine/Mapping'
+
+
+                    FinizensChallenge\InvestmentContext\OrderModule:
+                        is_bundle: false
+                        alias: FinizensChallange_InvestmentContext_OrderModule
+                        type: xml
+                        prefix: 'FinizensChallenge\InvestmentContext\OrderModule\Domain'
+                        dir: '%kernel.project_dir%/src/InvestmentContext/OrderModule/Infrastructure/Persistance/Doctrine/Mapping'
+
+
+                    FinizensChallenge\InvestmentContext\SharedModule:
+                        is_bundle: false
+                        alias: FinizensChallange_InvestmentContext_SharedModule
+                        type: xml
+                        prefix: 'FinizensChallenge\InvestmentContext\SharedModule\Domain'
+                        dir: '%kernel.project_dir%/src/InvestmentContext/SharedModule/Infrastructure/Persistance/Doctrine/Mapping'
+
+
+                    FinizensChallenge\SharedContext\SharedModule:
+                        is_bundle: false
+                        alias: FinizensChallange_SharedContext_SharedModule
+                        type: xml
+                        prefix: 'FinizensChallenge\SharedContext\SharedModule\Domain'
+                        dir: '%kernel.project_dir%/src/SharedContext/SharedModule/Infrastructure/Persistance/Doctrine/Mapping'
 

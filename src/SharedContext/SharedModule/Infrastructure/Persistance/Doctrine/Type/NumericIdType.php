@@ -17,7 +17,7 @@ class NumericIdType extends IntegerType
     #[Pure] public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         /** @var NumericId $value */
-        return $value->value();
+        return $value?->value();
     }
 
     public function getName(): string

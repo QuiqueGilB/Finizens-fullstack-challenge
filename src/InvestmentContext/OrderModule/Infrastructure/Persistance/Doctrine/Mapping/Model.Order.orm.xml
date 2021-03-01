@@ -1,0 +1,38 @@
+<doctrine-mapping>
+    <entity name="FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\Order"
+            table="investmentcontext_ordermodule_order"
+    >
+        <id name="id" type="numeric_id"/>
+
+
+        <embedded name="orderType"
+                  class="FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType"
+                  column-prefix="order_type"
+        />
+
+        <embedded name="orderStatus"
+                  class="FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus"
+                  column-prefix="order_status"
+        />
+
+        <embedded name="shares"
+                  class="FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares"
+                  column-prefix="shares"
+        />
+
+        <embedded name="portfolioId"
+                  class="FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId"
+                  column-prefix="portfolio_id"
+        />
+
+        <embedded name="allocationId"
+                  class="FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId"
+                  column-prefix="allocation_id"
+        />
+
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="updatedAt" type="datetime_immutable"/>
+        <field name="deletedAt" type="datetime_immutable" nullable="true"/>
+
+    </entity>
+</doctrine-mapping>

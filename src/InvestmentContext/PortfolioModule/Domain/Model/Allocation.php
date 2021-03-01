@@ -3,7 +3,7 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\ValueObject\Shares;
+use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Allocation

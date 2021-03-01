@@ -1,0 +1,5 @@
+<doctrine-mapping>
+    <embeddable name="FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType">
+        <field name="value" type="string" length="4"/>
+    </embeddable>
+</doctrine-mapping>
