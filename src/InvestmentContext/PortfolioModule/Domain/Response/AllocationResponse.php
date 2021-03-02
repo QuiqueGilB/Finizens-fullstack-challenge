@@ -22,5 +22,14 @@ class AllocationResponse extends Response
         );
     }
 
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function shares(): int
+    {
+        return $this->shares;
+    }
 
 }
