@@ -6,8 +6,8 @@ use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\Order;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\OrderRepository;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQuery;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
+use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQuery;
+use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQueryHandler;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
@@ -15,22 +15,16 @@ class CreateOrderHandler
 {
     public function __construct(
         private OrderRepository $orderRepository,
-//        private FindPortfolioByIdQueryHandler $findPortfolioQueryHandler,
-        private PortfolioRepository $portfolioRepository
+        private FindPortfolioQueryHandler $findPortfolioQueryHandler,
     ) {
-
-        dd($this->portfolioRepository->byId(NumericId::create(1)));
     }
 
     public function handle(CreateOrder $command): void
     {
-//        $this->assertExistsPortfolio($command->portfolioId());
+        $this->assertExistsPortfolio($command->portfolioId());
 
-//        $orderId = new NumericId($command->orderId());
-
+        $orderId = new NumericId($command->orderId());
         $portfolioId = new NumericId($command->portfolioId());
-        dd('wiii',$this->portfolioRepository->byId($portfolioId));
-
         $allocationId = new NumericId($command->allocationId());
         $shares = new Shares($command->shares());
         $orderType = new OrderType($command->orderType());
@@ -50,7 +44,7 @@ class CreateOrderHandler
 
     private function assertExistsPortfolio(string $portfolioId)
     {
-        $this->findPortfolioQueryHandler->handle(FindPortfolioByIdQuery::create($portfolioId));
+        $this->findPortfolioQueryHandler->handle(FindPortfolioQuery::create($portfolioId));
     }
 
 }

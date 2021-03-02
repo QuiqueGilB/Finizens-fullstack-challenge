@@ -29,6 +29,6 @@ class CreateOrder extends Command
 
     public function orderType(): string
     {
-        return $this->data['type'];
+        return $this->data['orderType'];
     }
 }
