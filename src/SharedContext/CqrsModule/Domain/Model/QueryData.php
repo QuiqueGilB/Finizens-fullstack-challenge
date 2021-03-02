@@ -9,6 +9,14 @@ use QuiqueGilB\GlobalApiCriteria\QueryResponseModule\Data\Domain\ValueObject\Que
 class QueryData extends QuiqueGilBQueryData implements JsonSerializable
 {
 
+    public function toPrimitives()
+    {
+        if (is_object($this->value()) || is_array($this->value())) {
+            return new static(json_decode(json_encode($this->value()), true, 512, JSON_THROW_ON_ERROR));
+        }
+        return new static($this->value());
+    }
+
     #[Pure] public function jsonSerialize()
     {
         return $this->value();
