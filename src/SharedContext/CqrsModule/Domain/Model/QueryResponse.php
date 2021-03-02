@@ -13,6 +13,16 @@ class QueryResponse extends QuiqueGilBQueryResponse implements JsonSerializable
         parent::__construct(QueryData::create($data), $metadata);
     }
 
+    public function data(): QueryData
+    {
+        return parent::data();
+    }
+
+    public function metadata(): QueryMetadata
+    {
+        return parent::metadata();
+    }
+
     public function jsonSerialize(): array
     {
         return [
