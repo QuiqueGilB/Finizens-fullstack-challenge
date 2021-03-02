@@ -2,12 +2,15 @@
 
 namespace FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Create;
 
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\AllocationNotFoundException;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderAllocationExceededSharesLimitException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\Order;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\OrderRepository;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
 use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQuery;
 use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQueryHandler;
+use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\AllocationResponse;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\PortfolioResponse;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
@@ -31,6 +34,11 @@ class CreateOrderHandler
         $orderType = new OrderType($command->orderType());
         $orderStatus = OrderStatus::pending();
 
+        if ($orderType->isSell()) {
+            $allocationResponse = $this->findAllocation($allocationId, $portfolioResponseData);
+            $this->assertSharesNotExcededLimit($shares, $allocationResponse);
+        }
+
         $order = new Order(
             $orderId,
             $orderType,
@@ -51,6 +59,29 @@ class CreateOrderHandler
             )
             ->data()
             ->value();
+    }
+
+    private function findAllocation(
+        NumericId $allocationId,
+        PortfolioResponse $portfolioResponseData
+    ): AllocationResponse {
+
+        foreach ($portfolioResponseData->allocationResponses() as $allocationResponse) {
+            if ($allocationId->value() === $allocationResponse->id()) {
+                return $allocationResponse;
+            }
+        }
+
+        throw new AllocationNotFoundException($allocationId->value());
+    }
+
+    private function assertSharesNotExcededLimit(
+        Shares $shares,
+        AllocationResponse $allocationResponse
+    ) {
+        if ($shares->value() > $allocationResponse->shares()) {
+            throw new OrderAllocationExceededSharesLimitException();
+        }
     }
 
 
