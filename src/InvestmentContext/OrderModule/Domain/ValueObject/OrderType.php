@@ -41,4 +41,12 @@ class OrderType extends ValueObject
     {
         return new static(self::ACCEPTED['sell']);
     }
+
+    public function isBuy():bool {
+        return $this->value === self::buy()->value();
+    }
+
+    public function isSell():bool {
+        return $this->value === self::sell()->value();
+    }
 }
