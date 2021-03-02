@@ -21,4 +21,15 @@ class PortfolioResponse extends Response
             AllocationResponse::buildCollection($model->allocations())
         );
     }
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    /** @return AllocationResponse[] */
+    public function allocations(): array
+    {
+        return $this->allocations;
+    }
 }

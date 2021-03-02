@@ -8,6 +8,7 @@ use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStat
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
 use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQuery;
 use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio\FindPortfolioQueryHandler;
+use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\PortfolioResponse;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
@@ -21,7 +22,7 @@ class CreateOrderHandler
 
     public function handle(CreateOrder $command): void
     {
-        $this->assertExistsPortfolio($command->portfolioId());
+        $portfolioResponseData = $this->findPortfolio($command);
 
         $orderId = new NumericId($command->orderId());
         $portfolioId = new NumericId($command->portfolioId());
@@ -42,9 +43,15 @@ class CreateOrderHandler
         $this->orderRepository->save($order);
     }
 
-    private function assertExistsPortfolio(string $portfolioId)
+    private function findPortfolio(CreateOrder $command): PortfolioResponse
     {
-        $this->findPortfolioQueryHandler->handle(FindPortfolioQuery::create($portfolioId));
+        return $this->findPortfolioQueryHandler
+            ->handle(
+                FindPortfolioQuery::create($command->portfolioId())
+            )
+            ->data()
+            ->value();
     }
+
 
 }
