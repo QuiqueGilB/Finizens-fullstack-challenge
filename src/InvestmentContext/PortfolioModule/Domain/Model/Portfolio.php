@@ -19,8 +19,9 @@ class Portfolio
     public function __construct(NumericId $id)
     {
         $this->id = $id;
-        $this->doUpdate([]);
-        $this->doUpdate();
+        $this->doUpdate(null);
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function update(?Allocation ...$allocations): self
