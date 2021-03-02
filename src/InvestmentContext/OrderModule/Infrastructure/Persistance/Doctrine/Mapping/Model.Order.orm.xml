@@ -4,7 +4,6 @@
     >
         <id name="id" type="numeric_id"/>
 
-
         <embedded name="orderType"
                   class="FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType"
                   column-prefix="order_type"
@@ -20,15 +19,8 @@
                   column-prefix="shares"
         />
 
-        <embedded name="portfolioId"
-                  class="FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId"
-                  column-prefix="portfolio_id"
-        />
-
-        <embedded name="allocationId"
-                  class="FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId"
-                  column-prefix="allocation_id"
-        />
+        <field name="portfolioId" type="numeric_id" />
+        <field name="allocationId" type="numeric_id" />
 
         <field name="createdAt" type="datetime_immutable"/>
         <field name="updatedAt" type="datetime_immutable"/>
