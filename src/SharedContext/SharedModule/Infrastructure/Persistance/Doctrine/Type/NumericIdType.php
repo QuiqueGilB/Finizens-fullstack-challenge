@@ -5,7 +5,6 @@ namespace FinizensChallenge\SharedContext\SharedModule\Infrastructure\Persistanc
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\IntegerType;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
-use JetBrains\PhpStorm\Pure;
 
 class NumericIdType extends IntegerType
 {
@@ -14,7 +13,7 @@ class NumericIdType extends IntegerType
         return NumericId::create($value);
     }
 
-    #[Pure] public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         /** @var NumericId $value */
         return $value?->value();
