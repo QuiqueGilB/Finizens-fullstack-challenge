@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCompleted;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCreated;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderUpdated;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderAlreadyCompletedException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
@@ -95,6 +96,10 @@ class Order
 
     public function complete(): static
     {
+        if($this->orderStatus->isCompleted()) {
+            throw new OrderAlreadyCompletedException();
+        }
+
         $this->orderStatus = OrderStatus::completed();
         $this->updatedAt = new DateTimeImmutable();
 
