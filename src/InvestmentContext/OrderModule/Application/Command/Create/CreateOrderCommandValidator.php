@@ -12,10 +12,10 @@ use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\ValidationException;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
-class CreateOrderValidator
+class CreateOrderCommandValidator
 {
 
-    public function validate(CreateOrder $command): void
+    public function validate(CreateOrderCommand $command): void
     {
         $this->validateId($command);
         $this->validatePortfolio($command);
@@ -23,28 +23,28 @@ class CreateOrderValidator
         $this->validateShares($command);
     }
 
-    private function validateId(CreateOrder $command)
+    private function validateId(CreateOrderCommand $command)
     {
         if (!is_int($command->data()['id'] ?? null)) {
             throw new ValidationException();
         }
     }
 
-    private function validatePortfolio(CreateOrder $command)
+    private function validatePortfolio(CreateOrderCommand $command)
     {
         if (!is_int($command->data()['portfolio'] ?? null)) {
             throw new ValidationException();
         }
     }
 
-    private function validateAllocation(CreateOrder $command)
+    private function validateAllocation(CreateOrderCommand $command)
     {
         if (!is_int($command->data()['allocation'] ?? null)) {
             throw new ValidationException();
         }
     }
 
-    private function validateShares(CreateOrder $command)
+    private function validateShares(CreateOrderCommand $command)
     {
         if (!is_int($command->data()['shares'] ?? null)) {
             throw new ValidationException();

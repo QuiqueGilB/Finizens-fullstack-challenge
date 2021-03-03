@@ -15,7 +15,7 @@ use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\PortfolioRe
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
-class CreateOrderHandler
+class CreateOrderCommandHandler
 {
     public function __construct(
         private OrderRepository $orderRepository,
@@ -23,7 +23,7 @@ class CreateOrderHandler
     ) {
     }
 
-    public function handle(CreateOrder $command): void
+    public function handle(CreateOrderCommand $command): void
     {
         $portfolioResponseData = $this->findPortfolio($command);
 
@@ -51,7 +51,7 @@ class CreateOrderHandler
         $this->orderRepository->save($order);
     }
 
-    private function findPortfolio(CreateOrder $command): PortfolioResponse
+    private function findPortfolio(CreateOrderCommand $command): PortfolioResponse
     {
         return $this->findPortfolioQueryHandler
             ->handle(

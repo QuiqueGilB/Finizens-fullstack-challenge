@@ -4,7 +4,7 @@ namespace FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Cr
 
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Command;
 
-class CreateOrder extends Command
+class CreateOrderCommand extends Command
 {
 
     public function orderId(): string

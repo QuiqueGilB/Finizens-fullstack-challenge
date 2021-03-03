@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\OrderModule\Infrastructure\Controllers\Api;
 
-use FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Create\CreateOrder;
+use FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Create\CreateOrderCommand;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Request\SymfonyRequestService;
@@ -26,7 +26,7 @@ class PostSellOrderController extends BaseApiController
         $payload = $this->symfonyRequestService->bodyJson($request);
         $payload['orderType'] = OrderType::sell()->value();
 
-        $command = CreateOrder::createFromArray($payload);
+        $command = CreateOrderCommand::createFromArray($payload);
         $this->commandBus->handle($command);
 
         return new EmptyResponse(200);
