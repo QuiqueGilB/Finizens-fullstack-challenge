@@ -4,11 +4,9 @@ namespace FinizensChallenge\Tests\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Call\BeforeScenario;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
-use MongoDB\Driver\Manager;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
