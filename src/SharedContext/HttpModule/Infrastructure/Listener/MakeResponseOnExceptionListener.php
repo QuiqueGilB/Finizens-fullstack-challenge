@@ -4,6 +4,7 @@ namespace FinizensChallenge\SharedContext\HttpModule\Infrastructure\Listener;
 
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\AllocationNotFoundException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderAllocationExceededSharesLimitException;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderNotFoundException;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception\PortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Exception\SharedPortfolioNotFoundException;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\EmptyResponse;
@@ -26,6 +27,7 @@ class MakeResponseOnExceptionListener
             ValidationException::class => new InvalidPayloadResponse(),
             PortfolioNotFoundException::class,
             SharedPortfolioNotFoundException::class,
+            OrderNotFoundException::class,
             AllocationNotFoundException::class => new NotFoundResponse(),
             OrderAllocationExceededSharesLimitException::class => new ServerErrorResponse(),
             default => $event->getResponse()
