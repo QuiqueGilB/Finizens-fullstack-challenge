@@ -13,6 +13,7 @@ use FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortf
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\AllocationResponse;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\PortfolioResponse;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
+use FinizensChallenge\SharedContext\EventModule\Domain\Model\EventBus;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class CreateOrderCommandHandler
@@ -20,6 +21,7 @@ class CreateOrderCommandHandler
     public function __construct(
         private OrderRepository $orderRepository,
         private FindPortfolioQueryHandler $findPortfolioQueryHandler,
+        private EventBus $eventBus
     ) {
     }
 
@@ -49,6 +51,7 @@ class CreateOrderCommandHandler
         );
 
         $this->orderRepository->save($order);
+        $this->eventBus->dispatch(...$order->eventsOccurred());
     }
 
     private function findPortfolio(CreateOrderCommand $command): PortfolioResponse
