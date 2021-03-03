@@ -61,7 +61,6 @@ Feature: Complete an active order
     Given I send a POST request to "/complete" with body:
     """
     {
-      "id": 1
     }
     """
     Then the response status code should be 400
