@@ -84,4 +84,11 @@ class Order
     {
         return $this->deletedAt;
     }
+
+    public function complete(): static
+    {
+        $this->orderStatus = OrderStatus::completed();
+        $this->updatedAt = new DateTimeImmutable();
+        return $this;
+    }
 }
