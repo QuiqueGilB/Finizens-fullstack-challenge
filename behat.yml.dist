@@ -3,7 +3,6 @@ default:
         default:
             contexts:
                 - FinizensChallenge\Tests\Behat\FeatureApiContext
-#                - Behat\MinkExtension\Context\MinkContext
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
@@ -13,8 +12,3 @@ default:
                 path: src/SharedContext/SymfonyModule/Infrastructure/Kernel/Kernel.php
                 environment: test
                 debug: true
-
-        Behat\MinkExtension:
-            sessions:
-                symfony:
-                    symfony: ~
