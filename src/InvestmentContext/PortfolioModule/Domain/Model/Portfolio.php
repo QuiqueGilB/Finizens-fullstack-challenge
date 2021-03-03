@@ -5,10 +5,15 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioCreated;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioUpdated;
+use FinizensChallenge\SharedContext\EventModule\Domain\Model\WithEvents;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Portfolio
 {
+    use WithEvents;
+
     private NumericId $id;
     private Collection $allocations;
 
@@ -19,14 +24,16 @@ class Portfolio
     public function __construct(NumericId $id)
     {
         $this->id = $id;
-        $this->doUpdate(null);
         $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
+        $this->doUpdate(null);
+
+        $this->publishEvent(new PortfolioCreated($this));
     }
 
     public function update(?Allocation ...$allocations): self
     {
         $this->doUpdate(...$allocations);
+        $this->publishEvent(new PortfolioUpdated($this));
         return $this;
     }
 
