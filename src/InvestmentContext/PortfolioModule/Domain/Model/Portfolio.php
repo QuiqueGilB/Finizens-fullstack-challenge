@@ -43,6 +43,7 @@ class Portfolio
         $this->updatedAt = new DateTimeImmutable();
     }
 
+    /** @return Allocation[] */
     public function allocations(): array
     {
         return $this->allocations->toArray();
