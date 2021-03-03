@@ -9,10 +9,10 @@ use JsonSerializable;
 abstract class Event implements JsonSerializable
 {
     private Uuid $id;
-    private $data;
+    private array $data;
     private DateTimeImmutable $occurredOn;
 
-    public function __construct($data)
+    protected function __construct(array $data = [])
     {
         $this->id = Uuid::create();
         $this->data = $data;
@@ -24,7 +24,7 @@ abstract class Event implements JsonSerializable
         return $this->id;
     }
 
-    public function data()
+    public function data(): array
     {
         return $this->data;
     }
@@ -51,7 +51,7 @@ abstract class Event implements JsonSerializable
     {
         return [
             'id' => $this->id->value(),
-            'eventName' => $this->eventName,
+            'eventName' => static::eventName(),
             'data' => $this->data,
             'occurredOn' => $this->occurredOn->format(DateTimeImmutable::ATOM)
         ];
