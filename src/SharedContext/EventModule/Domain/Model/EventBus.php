@@ -5,6 +5,6 @@ namespace FinizensChallenge\SharedContext\EventModule\Domain\Model;
 interface EventBus
 {
 
-    public function dispatch(Event $event): void;
+    public function dispatch(Event ...$events): void;
 
 }
