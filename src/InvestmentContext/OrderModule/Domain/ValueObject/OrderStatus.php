@@ -4,7 +4,6 @@ namespace FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject;
 
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\InvalidOrderStatusException;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\ValueObject;
-use JetBrains\PhpStorm\Pure;
 
 class OrderStatus extends ValueObject
 {
@@ -53,7 +52,7 @@ class OrderStatus extends ValueObject
         return $this->equal(self::completed());
     }
 
-    #[Pure] public function equal(OrderStatus $orderStatus): bool
+    public function equal(OrderStatus $orderStatus): bool
     {
         return $this->value === $orderStatus->value();
     }

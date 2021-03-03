@@ -5,7 +5,6 @@ namespace FinizensChallenge\SharedContext\SharedModule\Infrastructure\Persistanc
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
-use JetBrains\PhpStorm\Pure;
 
 class UuidType extends StringType
 {
@@ -15,7 +14,7 @@ class UuidType extends StringType
         return Uuid::create($value);
     }
 
-    #[Pure] public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         /** @var Uuid $value */
         return $value->value();

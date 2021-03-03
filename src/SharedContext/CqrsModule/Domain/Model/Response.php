@@ -2,7 +2,6 @@
 
 namespace FinizensChallenge\SharedContext\CqrsModule\Domain\Model;
 
-use JetBrains\PhpStorm\Pure;
 use JsonSerializable;
 
 abstract class Response implements JsonSerializable
@@ -20,7 +19,7 @@ abstract class Response implements JsonSerializable
         return $response;
     }
 
-    #[Pure] public function jsonSerialize()
+    public function jsonSerialize()
     {
         return get_object_vars($this);
     }
