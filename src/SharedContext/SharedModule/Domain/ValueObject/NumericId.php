@@ -30,6 +30,12 @@ class NumericId extends Id
     {
         return new static($id ?? mt_rand(1));
     }
+
+    public function equal(NumericId $numericId): bool
+    {
+        return $this->value === $numericId->value();
+    }
+
     public function __toString(): string
     {
         return $this->value;
