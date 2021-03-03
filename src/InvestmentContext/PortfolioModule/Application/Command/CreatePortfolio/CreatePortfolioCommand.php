@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\Create;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\CreatePortfolio;
 
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Command;
 
