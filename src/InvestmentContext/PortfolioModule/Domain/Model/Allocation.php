@@ -3,11 +3,16 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationCreated;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationUpdated;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
+use FinizensChallenge\SharedContext\EventModule\Domain\Model\WithEvents;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Allocation
 {
+    use WithEvents;
+
     private NumericId $id;
     private Portfolio $portfolio;
 
@@ -21,9 +26,17 @@ class Allocation
     {
         $this->id = $id;
         $this->portfolio = $portfolio;
-        $this->shares = $shares;
         $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
+        $this->doUpdate($shares);
+
+        $this->publishEvent(new AllocationCreated($this));
+    }
+
+    public function update(Shares $shares): static
+    {
+        $this->doUpdate($shares);
+        $this->publishEvent(new AllocationUpdated($this));
+        return $this;
     }
 
     public function id(): NumericId
@@ -54,5 +67,11 @@ class Allocation
     public function deletedAt(): ?DateTimeImmutable
     {
         return $this->deletedAt;
+    }
+
+    private function doUpdate(Shares $shares): void
+    {
+        $this->shares = $shares;
+        $this->updatedAt = new DateTimeImmutable();
     }
 }

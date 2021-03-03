@@ -3,13 +3,19 @@
 namespace FinizensChallenge\InvestmentContext\OrderModule\Domain\Model;
 
 use DateTimeImmutable;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCompleted;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCreated;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderUpdated;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderType;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
+use FinizensChallenge\SharedContext\EventModule\Domain\Model\WithEvents;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 class Order
 {
+    use WithEvents;
+
     private NumericId $id;
     private OrderType $orderType;
     private NumericId $portfolioId;
@@ -38,6 +44,8 @@ class Order
 
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
+
+        $this->publishEvent(new OrderCreated($this));
     }
 
     public function id(): NumericId
@@ -89,6 +97,10 @@ class Order
     {
         $this->orderStatus = OrderStatus::completed();
         $this->updatedAt = new DateTimeImmutable();
+
+        $this->publishEvent(new OrderUpdated($this));
+        $this->publishEvent(new OrderCompleted($this));
+
         return $this;
     }
 }
