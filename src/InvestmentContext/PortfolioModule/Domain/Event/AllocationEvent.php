@@ -9,11 +9,18 @@ abstract class AllocationEvent extends Event
 {
     public function __construct(Allocation $allocation)
     {
-        parent::__construct($allocation);
+        parent::__construct([
+            'id' => $allocation->id()->value(),
+            'portfolio' => [
+                'id' => $allocation->portfolio()->id()->value()
+            ],
+            'updatedAt' => $allocation->createdAt()->format(DATE_ATOM),
+            'createdAt' => $allocation->createdAt()->format(DATE_ATOM)
+        ]);
     }
 
     protected static function type(): string
     {
-        return 'portfolio';
+        return 'allocation';
     }
 }
