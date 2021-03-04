@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindPortfolio;
 
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Query;
 
@@ -18,6 +18,5 @@ class FindPortfolioByIdQuery extends Query
     {
         return $this->data['portfolioId'];
     }
-
 
 }

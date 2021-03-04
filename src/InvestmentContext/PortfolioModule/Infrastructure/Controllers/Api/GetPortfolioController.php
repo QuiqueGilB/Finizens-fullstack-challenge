@@ -2,7 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Controllers\Api;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQuery;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindPortfolio\FindPortfolioByIdQuery;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\QueryBus;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Controller\BaseApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
