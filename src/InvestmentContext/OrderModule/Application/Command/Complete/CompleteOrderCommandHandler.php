@@ -4,11 +4,10 @@ namespace FinizensChallenge\InvestmentContext\OrderModule\Application\Command\Co
 
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderNotFoundException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\OrderRepository;
-use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\Command;
 use FinizensChallenge\SharedContext\EventModule\Domain\Model\EventBus;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
-class CompleteOrderCommandHandler extends Command
+class CompleteOrderCommandHandler
 {
     public function __construct(
         private OrderRepository $orderRepository,
