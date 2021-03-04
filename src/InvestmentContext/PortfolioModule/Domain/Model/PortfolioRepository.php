@@ -10,5 +10,7 @@ interface PortfolioRepository
 
     public function byIdOrFail(NumericId $portfolioId): Portfolio;
 
+    public function allocationById(NumericId $allocationId): ?Allocation;
+
     public function save(Portfolio $portfolio): void;
 }

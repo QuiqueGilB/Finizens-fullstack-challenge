@@ -5,6 +5,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Per
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception\PortfolioNotFoundException;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Allocation;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\Portfolio;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
@@ -19,6 +20,11 @@ class DoctrinePortfolioRepository extends ServiceEntityRepository implements Por
     public function byId(NumericId $portfolioId): ?Portfolio
     {
         return $this->find($portfolioId);
+    }
+
+    public function allocationById(NumericId $allocationId): ?Allocation
+    {
+        return $this->_em->find(Allocation::class, $allocationId);
     }
 
     public function byIdOrFail(NumericId $portfolioId): Portfolio
@@ -36,6 +42,4 @@ class DoctrinePortfolioRepository extends ServiceEntityRepository implements Por
     {
         $this->_em->persist($portfolio);
     }
-
-
 }
