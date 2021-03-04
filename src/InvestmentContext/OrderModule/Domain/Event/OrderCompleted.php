@@ -6,6 +6,6 @@ class OrderCompleted extends OrderEvent
 {
     protected static function action(): string
     {
-        return 'created';
+        return 'completed';
     }
 }
