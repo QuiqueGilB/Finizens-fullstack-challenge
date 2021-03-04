@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioCreated;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioUpdated;
+use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\EventModule\Domain\Model\WithEvents;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
@@ -15,6 +16,7 @@ class Portfolio
     use WithEvents;
 
     private NumericId $id;
+    /** @var Collection<Allocation> */
     private Collection $allocations;
 
     private DateTimeImmutable $createdAt;
@@ -34,6 +36,7 @@ class Portfolio
     {
         $this->doUpdate(...$allocations);
         $this->publishEvent(new PortfolioUpdated($this));
+
         return $this;
     }
 
@@ -67,6 +70,32 @@ class Portfolio
     public function deletedAt(): ?DateTimeImmutable
     {
         return $this->deletedAt;
+    }
+
+    public function allocation(NumericId $allocationId): ?Allocation
+    {
+        /** @var Allocation $allocation */
+        foreach ($this->allocations as $allocation) {
+            if ($allocation->id()->equal($allocationId)) {
+                return $allocation;
+            }
+        }
+
+        return null;
+    }
+
+    public function createOrUpdateAllocation(
+        NumericId $allocationId,
+        Shares $shares
+    ): Allocation {
+        $allocation = $this->allocation($allocationId);
+
+        null === $allocation
+            ? $this->allocations->add($allocation = new Allocation($allocationId, $this, $shares))
+            : $allocation->update($shares);
+
+        $this->publishEvent(new PortfolioUpdated($this));
+        return $allocation;
     }
 
 }
