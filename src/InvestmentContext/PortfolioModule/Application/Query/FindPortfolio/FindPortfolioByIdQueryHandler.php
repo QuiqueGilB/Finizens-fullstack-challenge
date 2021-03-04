@@ -1,6 +1,6 @@
 <?php
 
-namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find;
+namespace FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindPortfolio;
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception\PortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model\PortfolioRepository;

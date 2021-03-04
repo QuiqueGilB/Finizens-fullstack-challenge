@@ -2,8 +2,8 @@
 
 namespace FinizensChallenge\InvestmentContext\SharedModule\Application\Query\FindPortfolio;
 
-use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQuery;
-use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\Find\FindPortfolioByIdQueryHandler;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindPortfolio\FindPortfolioByIdQuery;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindPortfolio\FindPortfolioByIdQueryHandler;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Exception\PortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Exception\SharedPortfolioNotFoundException;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\Response\AllocationResponse;
