@@ -11,7 +11,7 @@ abstract class OrderEvent extends Event
     {
         parent::__construct([
             'id' => $order->id()->value(),
-            'portfolioId' => $order->allocationId()->value(),
+            'portfolioId' => $order->portfolioId()->value(),
             'allocationId' => $order->allocationId()->value(),
             'shares' => $order->shares()->value(),
             'orderType' => $order->orderType()->value(),
