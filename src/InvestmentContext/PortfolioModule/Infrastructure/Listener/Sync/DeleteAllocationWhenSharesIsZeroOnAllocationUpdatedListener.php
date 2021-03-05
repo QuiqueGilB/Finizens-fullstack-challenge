@@ -28,7 +28,7 @@ class DeleteAllocationWhenSharesIsZeroOnAllocationUpdatedListener extends BaseSy
 
     public function __invoke(Event $event): void
     {
-        $allocationId = $event->data()['allocationId'];
+        $allocationId = $event->data()['id'];
 
         $allocationResponse = $this->findAllocation($allocationId);
 
