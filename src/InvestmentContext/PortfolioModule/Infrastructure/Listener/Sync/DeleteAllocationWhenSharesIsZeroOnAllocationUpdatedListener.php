@@ -19,7 +19,7 @@ class DeleteAllocationWhenSharesIsZeroOnAllocationUpdatedListener extends BaseSy
     ) {
     }
 
-    public static function subscribedEvents(): array
+    public static function subscribedTo(): array
     {
         return [
             AllocationUpdated::eventName()

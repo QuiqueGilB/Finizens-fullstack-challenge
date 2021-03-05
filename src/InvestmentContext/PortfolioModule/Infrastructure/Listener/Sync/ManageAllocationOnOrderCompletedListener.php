@@ -20,7 +20,7 @@ class ManageAllocationOnOrderCompletedListener extends BaseSyncListener
     ) {
     }
 
-    public static function subscribedEvents(): array
+    public static function subscribedTo(): array
     {
         return [
             OrderCompleted::eventName()
