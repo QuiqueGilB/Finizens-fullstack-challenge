@@ -98,4 +98,18 @@ class Portfolio
         return $allocation;
     }
 
+    public function deleteAllocation(Allocation $allocation): self
+    {
+        foreach ($this->allocations as $key => $portfolioAllocation) {
+            if ($allocation->id()->equal($allocation->id())) {
+                $portfolioAllocation->delete();
+                $this->allocations->remove($key);
+                break;
+            }
+        }
+
+        $this->publishEvent(new PortfolioUpdated($this));
+        return $this;
+    }
+
 }

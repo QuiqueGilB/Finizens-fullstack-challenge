@@ -32,7 +32,7 @@ class DeleteAllocationWhenSharesIsZeroOnAllocationUpdatedListener extends BaseSy
 
         $allocationResponse = $this->findAllocation($allocationId);
 
-        if (0 === $allocationResponse->shares()) {
+        if (0 !== $allocationResponse->shares()) {
             return;
         }
 
