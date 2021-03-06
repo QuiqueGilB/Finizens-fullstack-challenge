@@ -2,8 +2,8 @@
   <div id="app">
 
     <b-container fluid class="p-0">
-      <b-row no-gutters >
-        <b-col no-gutters >
+      <b-row no-gutters>
+        <b-col no-gutters>
           <router-view></router-view>
         </b-col>
       </b-row>
@@ -11,12 +11,17 @@
   </div>
 </template>
 
-<script>
 
-export default {
-  name: 'App',
-  components: {}
+<script lang="ts">
+
+import {Vue} from "vue-property-decorator";
+import Component from "vue-class-component";
+
+@Component
+export default class App extends Vue {
+
 }
+
 </script>
 
 <style>

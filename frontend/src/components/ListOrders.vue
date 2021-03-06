@@ -12,17 +12,17 @@
 </template>
 
 
-<script>
+<script lang="ts">
 
-export default {
-  name: 'ListOrders',
-  props: {
-    orders: Array
-  },
-  methods: {
-    completeOrder(orderId) {
-      console.log(orderId);
-    }
+import {Component, Prop, Vue} from "vue-property-decorator";
+
+@Component
+export default class ListOrders extends Vue {
+  @Prop()
+  readonly orders!: Array<any>;
+
+  completeOrder(orderId: number) {
+    console.log(orderId);
   }
 }
 </script>

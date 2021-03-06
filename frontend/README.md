@@ -1,4 +1,4 @@
-# finizens-frontend
+# aaa
 
 ## Project setup
 ```

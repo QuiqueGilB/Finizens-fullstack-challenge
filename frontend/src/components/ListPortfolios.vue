@@ -4,18 +4,19 @@
     <b-list-group-item :key="portfolio.id"
                        v-for="portfolio in portfolios"
     >
-      Portfolio {{portfolio.id}}
+      Portfolio {{ portfolio.id }}
     </b-list-group-item>
   </b-list-group>
 
 </template>
 
-<script>
-export default {
-  name: "ListPortfolios",
-  props: {
-    portfolios: Array
-  }
+<script lang="ts">
+import {Component, Prop, Vue} from "vue-property-decorator";
+
+@Component
+export default class ListPortfolios extends Vue {
+  @Prop()
+  readonly portfolios!: Array<any>
 }
 </script>
 

@@ -12,17 +12,17 @@
 </template>
 
 
-<script>
+<script lang="ts">
 
-export default {
-  name: 'ListAllocations',
-  props: {
-    allocations: Array
-  },
-  methods: {
-    sellAllocation(allocationId) {
-      console.log(allocationId);
-    }
+import {Component, Prop, Vue} from "vue-property-decorator";
+
+@Component
+export default class ListAllocations extends Vue {
+  @Prop()
+  public readonly allocations!: Array<any>;
+
+  sellAllocation(allocationId: number) {
+    console.log(allocationId);
   }
 }
 </script>

@@ -7,22 +7,34 @@ import BootstrapVue, {IconsPlugin} from "bootstrap-vue";
 Vue.config.productionTip = false
 
 const routes = [
-  { path: '/', component: PanelPage, name: "PanelPage" },
+    {path: '/', component: PanelPage, name: "PanelPage"},
 ]
 
 
 const router = new VueRouter({
-  routes // short for `routes: routes`
+    routes // short for `routes: routes`
 })
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
 Vue.use(VueRouter);
+//
+// new Vue({
+//   render: h => h(App),
+//   router
+// }).$mount('#app')
+//
+//
 
-new Vue({
-  render: h => h(App),
-  router
-}).$mount('#app')
+
+const el = "#root";
+const template = "<App />";
+const components = {App};
+
+// Bootstrap the application by returning a new Vue instance
+(() => new Vue({el, template, components, router}))();
+
