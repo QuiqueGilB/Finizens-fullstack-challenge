@@ -51,7 +51,7 @@ class CreateOrderCommandHandler
         );
 
         $this->orderRepository->save($order);
-        $this->eventBus->dispatch(...$order->eventsOccurred());
+        $this->eventBus->dispatch(...$order->pullEventsOccurred());
     }
 
     private function findPortfolio(CreateOrderCommand $command): PortfolioResponse

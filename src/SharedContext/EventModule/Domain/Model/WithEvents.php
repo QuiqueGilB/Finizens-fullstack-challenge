@@ -11,8 +11,11 @@ trait WithEvents
         $this->eventsOccurred[] = $event;
     }
 
-    public function eventsOccurred(): array
+    public function pullEventsOccurred(): array
     {
-        return $this->eventsOccurred;
+        $eventsOccurred = $this->eventsOccurred;
+        $this->eventsOccurred = [];
+
+        return $eventsOccurred;
     }
 }

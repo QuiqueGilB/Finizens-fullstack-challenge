@@ -27,6 +27,6 @@ class CompleteOrderCommandHandler
         $order->complete();
 
         $this->orderRepository->save($order);
-        $this->eventBus->dispatch(...$order->eventsOccurred());
+        $this->eventBus->dispatch(...$order->pullEventsOccurred());
     }
 }
