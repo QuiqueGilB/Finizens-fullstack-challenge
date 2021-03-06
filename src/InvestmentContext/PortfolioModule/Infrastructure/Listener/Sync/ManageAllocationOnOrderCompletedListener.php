@@ -33,18 +33,17 @@ class ManageAllocationOnOrderCompletedListener extends BaseSyncListener
         $portfolioId = $event->data()['portfolioId'];
         $allocationId = $event->data()['allocationId'];
         $orderType = $event->data()['orderType'];
-        $shares = $event->data()['shares'];
+        $orderShares = $event->data()['shares'];
 
         $allocationResponse = $this->findAllocation($allocationId);
+        $allocationShares = $allocationResponse?->shares() ?? 0;
 
-        if (null !== $allocationResponse) {
-            $shares += $allocationResponse->shares() * ('sell' === $orderType ? -1 : 1);
-        }
+        $allocationShares += $orderShares * ('sell' === $orderType ? -1 : 1);
 
         $command = UpdateAllocationCommand::create(
             $portfolioId,
             $allocationId,
-            $shares,
+            $allocationShares,
         );
 
         $this->commandBus->handle($command);
