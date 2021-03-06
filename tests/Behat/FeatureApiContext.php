@@ -62,7 +62,9 @@ class FeatureApiContext implements Context
                 [],
                 [],
                 [],
-                [],
+                [
+                    'CONTENT_TYPE' => 'application/json',
+                ],
                 $requestBody?->getRaw()
             )
         );
