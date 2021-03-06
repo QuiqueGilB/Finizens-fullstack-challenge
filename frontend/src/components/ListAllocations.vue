@@ -1,8 +1,9 @@
 <template>
 
-  <b-table :fields="['id', 'portfolio', 'allocation', 'shares', 'actions']"
+  <b-table :fields="['id', 'shares', 'actions']"
            :items="allocations"
            hover
+           responsive
   >
     <template #cell(actions)="data">
       <b-button variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>

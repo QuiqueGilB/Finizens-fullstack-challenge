@@ -3,21 +3,27 @@
 
     <b-row no-gutters>
 
-      <b-col cols="3" no-gutters>
+      <b-col lg="2" md="3">
+        <b-img :src="finizensLogo" fluid/>
+
+        <b-button squared variant="outline-secondary">
+          <b-icon icon="plus-circle"></b-icon>
+          New portfolio
+        </b-button>
         <ListPortfolios :portfolios="this.portfolios"/>
       </b-col>
 
 
       <b-col>
-        <h1>Portfolio {{ portfolio.id }}</h1>
+        <h1 class="text-left m-5 my-30">Portfolio {{ portfolio.id }}</h1>
 
-        <b-row>
+        <b-row no-gutters>
 
-          <b-col cols="3">
+          <b-col cols="3" class="border mx-2" >
             <ListAllocations :allocations="this.portfolio.allocations"/>
           </b-col>
 
-          <b-col>
+          <b-col class="border mx-2">
             <ListOrders :orders="this.orders"/>
           </b-col>
 
@@ -38,10 +44,8 @@ import ListAllocations from "@/components/ListAllocations.vue";
 import ListOrders from "@/components/ListOrders.vue";
 import ListPortfolios from "@/components/ListPortfolios.vue";
 import {Component, Vue} from "vue-property-decorator";
-import FetchHttpClient from "@/api/FetchHttpClient";
-import Portfolio from "@/model/Portfolio";
 import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
-
+import finizensLogo from '@/assets/finizens.png';
 
 @Component({
   components: {
@@ -56,6 +60,7 @@ export default class PanelView extends Vue {
 
   data() {
     return {
+      finizensLogo,
       portfolios: [{id: 1}, {id: 2}, {id: 3}],
       portfolio: {
         id: ''
