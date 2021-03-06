@@ -38,6 +38,9 @@ import ListAllocations from "@/components/ListAllocations.vue";
 import ListOrders from "@/components/ListOrders.vue";
 import ListPortfolios from "@/components/ListPortfolios.vue";
 import {Component, Vue} from "vue-property-decorator";
+import FetchHttpClient from "@/api/FetchHttpClient";
+import Portfolio from "@/model/Portfolio";
+import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
 
 
 @Component({
@@ -49,6 +52,7 @@ import {Component, Vue} from "vue-property-decorator";
 })
 export default class PanelView extends Vue {
   private portfolio: any;
+  private readonly portfolioClient = new PortfolioClient()
 
   data() {
     return {
@@ -75,21 +79,8 @@ export default class PanelView extends Vue {
 
   async created() {
     console.log(process.env);
-    this.portfolio = await fetch(
-        'http://localhost:5500/portfolio/1',
-        {
-          method: 'GET', // *GET, POST, PUT, DELETE, etc.
-          // mode: 'cors', // no-cors, *cors, same-origin
-          // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          // credentials: 'same-origin', // include, *same-origin, omit
-          // headers: {
-          //   'Content-Type': 'application/json'
-          //   'Content-Type': 'application/x-www-form-urlencoded',
-          //
-          // }
-        }
-    ).then(response => response.json());
 
+    this.portfolio = await this.portfolioClient.byId(1);
     console.log(this.portfolio);
   }
 }
