@@ -37,3 +37,7 @@ services:
     FinizensChallenge\SharedContext\HttpModule\Infrastructure\Listener\MakeResponseOnExceptionListener:
         tags:
             - { name: 'kernel.event_listener', event: 'kernel.exception',  method: onKernelException }
+
+    FinizensChallenge\SharedContext\HttpModule\Infrastructure\Listener\MakeBodyOnJsonRequestListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.request',  method: onRequest }

@@ -12,6 +12,7 @@ use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\InvalidPa
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\NotFoundResponse;
 use FinizensChallenge\SharedContext\HttpModule\Infrastructure\Response\ServerErrorResponse;
 use FinizensChallenge\SharedContext\SharedModule\Domain\Exception\ValidationException;
+use HttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -24,11 +25,15 @@ class MakeResponseOnExceptionListener
 
         $response = match (get_class($event->getThrowable())) {
             MethodNotAllowedHttpException::class => new EmptyResponse(Response::HTTP_METHOD_NOT_ALLOWED),
-            ValidationException::class => new InvalidPayloadResponse(),
+
+            ValidationException::class,
+            HttpException::class => new InvalidPayloadResponse(),
+
             PortfolioNotFoundException::class,
             SharedPortfolioNotFoundException::class,
             OrderNotFoundException::class,
             AllocationNotFoundException::class => new NotFoundResponse(),
+
             OrderAllocationExceededSharesLimitException::class => new ServerErrorResponse(),
             default => $event->getResponse()
         };

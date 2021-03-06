@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "222d5faffba2cd2d45995c7c735e48ec",
+    "content-hash": "1850fd6514ed6552f2a38844df46f438",
     "packages": [
         {
             "name": "brick/math",
@@ -2249,12 +2249,12 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/QuiqueGilB/Global-Api-Criteria.git",
+                "url": "https://github.com/QuiqueGilB/PHP-Global-Api-Criteria.git",
                 "reference": "3d892c9d92db3e97c0922a1fee47ecd336480ef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QuiqueGilB/Global-Api-Criteria/zipball/3d892c9d92db3e97c0922a1fee47ecd336480ef4",
+                "url": "https://api.github.com/repos/QuiqueGilB/PHP-Global-Api-Criteria/zipball/3d892c9d92db3e97c0922a1fee47ecd336480ef4",
                 "reference": "3d892c9d92db3e97c0922a1fee47ecd336480ef4",
                 "shasum": ""
             },
@@ -2296,8 +2296,8 @@
                 "eloquent"
             ],
             "support": {
-                "issues": "https://github.com/QuiqueGilB/Global-Api-Criteria/issues",
-                "source": "https://github.com/QuiqueGilB/Global-Api-Criteria/tree/main"
+                "issues": "https://github.com/QuiqueGilB/PHP-Global-Api-Criteria/issues",
+                "source": "https://github.com/QuiqueGilB/PHP-Global-Api-Criteria/tree/main"
             },
             "time": "2021-01-29T20:27:33+00:00"
         },
@@ -8081,7 +8081,8 @@
     "platform": {
         "php": ">=8.0",
         "ext-ctype": "*",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-http": "*"
     },
     "platform-dev": {
         "ext-curl": "*"
