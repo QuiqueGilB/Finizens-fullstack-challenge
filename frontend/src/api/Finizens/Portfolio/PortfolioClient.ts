@@ -1,6 +1,6 @@
 import FinizensApi from "@/api/Finizens/FinizensApi";
-import Portfolio from "@/model/Portfolio";
-import Allocation from "@/model/Allocation";
+import Portfolio from "@/model/Portfolio/Portfolio";
+import Allocation from "@/model/Portfolio/Allocation";
 
 type allocationResponse = {
     id: number;
@@ -18,19 +18,24 @@ export default class PortfolioClient extends FinizensApi {
         return this.httpClient
             .get<portfolioResponse>(`${this.apiUrl}/portfolio/${portfolioId}`)
             .then((response: portfolioResponse) => {
-                console.log(response);
                 return this.cast(response);
             });
     }
 
     public all(): Promise<Portfolio[]> {
-        return this.httpClient
-            .get<portfolioResponse[]>(`${this.apiUrl}/portfolio`)
-            .then((response: portfolioResponse[]) => {
-                return response.map((portfolio: portfolioResponse) => {
-                    return this.cast(portfolio);
-                })
-            });
+        return Promise.resolve([
+           new Portfolio(1,[new Allocation(1,5),new Allocation(2,21)]),
+           new Portfolio(2,[new Allocation(4,1),new Allocation(6,9)]),
+           new Portfolio(3,[new Allocation(22,30),new Allocation(65,23)]),
+        ]);
+
+        // return this.httpClient
+        //     .get<portfolioResponse[]>(`${this.apiUrl}/portfolio`)
+        //     .then((response: portfolioResponse[]) => {
+        //         return response.map((portfolio: portfolioResponse) => {
+        //             return this.cast(portfolio);
+        //         })
+        //     });
     }
 
     public save(portfolio: Portfolio): Promise<void> {

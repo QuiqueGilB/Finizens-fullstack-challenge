@@ -22,7 +22,7 @@ export default class ListOrders extends Vue {
   readonly orders!: Array<any>;
 
   completeOrder(orderId: number) {
-    console.log(orderId);
+    console.log('orderId: ' + orderId);
   }
 }
 </script>

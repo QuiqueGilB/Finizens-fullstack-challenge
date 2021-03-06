@@ -53,7 +53,7 @@ export default class FetchHttpClient implements HttpClient {
         return fetch(httpUrl.toString(), requestData)
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
-                    throw response;
+                    throw new Error(JSON.stringify(response));
                 }
 
                 const contentType = response.headers.get('Content-Type');
@@ -69,6 +69,7 @@ export default class FetchHttpClient implements HttpClient {
                 return response as unknown as Promise<T>;
             })
             .catch((error) => {
+                console.error(error);
                 throw error
             })
     }

@@ -2,7 +2,8 @@
 
   <b-list-group>
     <b-list-group-item :key="portfolio.id"
-                       v-for="portfolio in portfolios"
+                       v-for="portfolio in this.portfolios"
+                       @click="selectPortfolio(portfolio.id)"
     >
       Portfolio {{ portfolio.id }}
     </b-list-group-item>
@@ -11,12 +12,28 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from "vue-property-decorator";
+import {Component, Vue} from "vue-property-decorator";
+import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
+import Portfolio from "@/model/Portfolio/Portfolio";
 
 @Component
 export default class ListPortfolios extends Vue {
-  @Prop()
-  readonly portfolios!: Array<any>
+
+  private readonly portfolioClient = new PortfolioClient();
+
+  public portfolios: Portfolio[] = [];
+
+  async created() {
+    this.portfolios = await this.portfolioClient.all();
+
+    if (this.portfolios.length > 0) {
+      this.selectPortfolio(this.portfolios[0].id);
+    }
+  }
+
+  selectPortfolio(portfolioId: number) {
+    this.$emit('portfolioSelected', portfolioId);
+  }
 }
 </script>
 
