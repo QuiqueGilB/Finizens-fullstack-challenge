@@ -48,9 +48,9 @@ class CreatePortfolioCommandHandler
 
     private function dispatchEvents(Portfolio $portfolio): void
     {
-        $this->eventBus->dispatch(...$portfolio->eventsOccurred());
+        $this->eventBus->dispatch(...$portfolio->pullEventsOccurred());
         foreach ($portfolio->allocations() as $allocation) {
-            $this->eventBus->dispatch(...$allocation->eventsOccurred());
+            $this->eventBus->dispatch(...$allocation->pullEventsOccurred());
         }
     }
 

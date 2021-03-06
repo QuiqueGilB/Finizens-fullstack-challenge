@@ -36,8 +36,8 @@ class UpdateAllocationCommandHandler
 
         $this->portfolioRepository->save($portfolio);
 
-        $this->eventBus->dispatch(...$portfolio->eventsOccurred());
-        $this->eventBus->dispatch(...$allocation->eventsOccurred());
+        $this->eventBus->dispatch(...$portfolio->pullEventsOccurred());
+        $this->eventBus->dispatch(...$allocation->pullEventsOccurred());
     }
 
 }
