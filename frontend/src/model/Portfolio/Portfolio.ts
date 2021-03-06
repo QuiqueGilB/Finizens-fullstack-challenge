@@ -1,4 +1,4 @@
-import Allocation from "@/model/Allocation";
+import Allocation from "@/model/Portfolio/Allocation";
 
 export default class Portfolio {
 
