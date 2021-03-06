@@ -4,6 +4,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
 use DateTimeImmutable;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationCreated;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationDeleted;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationUpdated;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
 use FinizensChallenge\SharedContext\EventModule\Domain\Model\WithEvents;
@@ -67,6 +68,12 @@ class Allocation
     public function deletedAt(): ?DateTimeImmutable
     {
         return $this->deletedAt;
+    }
+
+    public function delete(): void
+    {
+        $this->deletedAt = new DateTimeImmutable();
+        $this->publishEvent(new AllocationDeleted($this));
     }
 
     private function doUpdate(Shares $shares): void
