@@ -5,7 +5,7 @@ export default class FetchHttpClient implements HttpClient {
     get<T>(
         url: string,
         headers: {} | null = null,
-        query: {} | null = null,
+        query: { [key: string]: any } | null = null,
     ): Promise<T> {
         return FetchHttpClient.request<T>('GET', url, headers || {}, query || {}, null);
     }
@@ -28,7 +28,7 @@ export default class FetchHttpClient implements HttpClient {
 
 
     private static request<T>(
-        method: string,
+        method: "GET" | "POST" | "PUT" | "PATH" | "DELETE",
         url: string,
         headers: { [key: string]: string },
         query: { [key: string]: string },
@@ -56,8 +56,14 @@ export default class FetchHttpClient implements HttpClient {
                     throw response;
                 }
 
-                if ('application/json' === response.headers.get('Content-Type')) {
+                const contentType = response.headers.get('Content-Type');
+
+                if ('application/json' === contentType) {
                     return response.json() as Promise<T>;
+                }
+
+                if ((contentType || '').startsWith('text\\')) {
+                    return response.text() as unknown as Promise<T>;
                 }
 
                 return response as unknown as Promise<T>;
