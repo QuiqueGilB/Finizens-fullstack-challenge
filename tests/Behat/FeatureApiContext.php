@@ -2,52 +2,23 @@
 
 namespace FinizensChallenge\Tests\Behat;
 
-use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Call\BeforeScenario;
 use Behat\Gherkin\Node\PyStringNode;
-use Doctrine\DBAL\Connection;
-use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class FeatureApiContext implements Context
+class FeatureApiContext extends BaseContext
 {
-    private KernelInterface $kernel;
     private ?Response $response;
-    private ManagerRegistry $managerRegistry;
-
-    public function __construct(KernelInterface $kernel, ManagerRegistry $managerRegistry)
-    {
-        $this->kernel = $kernel;
-        $this->managerRegistry = $managerRegistry;
-    }
 
     /**
      * @BeforeScenario
      */
     public function cleanScenario(): void
     {
-        /** @var Connection $connection */
-        foreach ($this->managerRegistry->getConnections() as $connection) {
-
-            $tableNames = $connection->getSchemaManager()->listTableNames();
-            $sqlTruncates = array_map(
-                static function (string $tablename) {
-                    return sprintf("TRUNCATE TABLE %s;", $tablename);
-                },
-                $tableNames
-            );
-
-            $sql = sprintf("
-                SET FOREIGN_KEY_CHECKS = 0; 
-                %s
-                SET FOREIGN_KEY_CHECKS = 1;",
-                implode(' ', $sqlTruncates));
-
-            $connection->executeStatement($sql);
-        }
+        $this->truncateTables();
+        $this->loadFixtures();
     }
 
     /**
