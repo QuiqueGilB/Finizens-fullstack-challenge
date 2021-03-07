@@ -7,7 +7,7 @@
            v-if="this.portfolio"
   >
     <template #cell(actions)="data">
-      <b-button variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>
+      <b-button size="sm" variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>
     </template>
   </b-table>
 
