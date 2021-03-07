@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    fixtures:
+        namespace: FinizensChallenge\
+        resource: '../src/**/Infrastructure/Persistance/Doctrine/Fixtures/*'
+        tags: [ doctrine.fixture.orm ]
