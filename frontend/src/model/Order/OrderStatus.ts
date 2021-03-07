@@ -1,3 +1,5 @@
+import Order from "@/model/Order/Order";
+
 export default class OrderStatus {
 
     private static readonly PENDING = "pending";
@@ -17,5 +19,14 @@ export default class OrderStatus {
 
     public isPending(): boolean {
         return OrderStatus.PENDING === this.value;
+    }
+
+
+    static pending(): OrderStatus {
+        return new OrderStatus(this.PENDING);
+    }
+
+    static completed(): OrderStatus {
+        return new OrderStatus(this.COMPLETED);
     }
 }

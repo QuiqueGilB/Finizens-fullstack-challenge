@@ -16,6 +16,7 @@
 import {Component, Vue} from "vue-property-decorator";
 import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
 import Portfolio from "@/model/Portfolio/Portfolio";
+import EventBus from "@/EventBus";
 
 @Component
 export default class ListPortfolios extends Vue {

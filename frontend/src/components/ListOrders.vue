@@ -32,6 +32,7 @@ import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import OrderClient from "@/api/Finizens/Order/OrderClient";
 import Order from "@/model/Order/Order";
 import TableTitle from "@/components/TableTitle.vue";
+import EventBus from "@/EventBus";
 
 @Component({
   components: {
@@ -48,6 +49,13 @@ export default class ListOrders extends Vue {
   public orders: Order[] = [];
   public readonly criteria: { [key: string]: string | number } = {};
 
+  created() {
+    EventBus.on('orderCreated', this.onOrderCreated)
+  }
+
+  async onOrderCreated(order: Order) {
+    this.orders.push(order);
+  }
 
   @Watch('portfolioId')
   async onPortfolioIdChanged(newPortfolioId: number) {
@@ -59,10 +67,9 @@ export default class ListOrders extends Vue {
 
   async completeOrder(order: Order) {
     await this.orderClient.complete(order.id);
-    this.$emit('orderCompleted', order);
+    EventBus.emit('orderCompleted', order);
 
-    const index = this.orders.indexOf(order);
-    this.orders.splice(index, 1)
+    this.orders.splice(this.orders.indexOf(order), 1)
   }
 }
 </script>

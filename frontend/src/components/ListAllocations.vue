@@ -9,7 +9,7 @@
              v-if="this.portfolio"
     >
       <template #cell(actions)="data">
-        <b-button size="sm" variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>
+        <b-button size="sm" variant="outline-danger" @click="sellAllocation(data.item)">Sell</b-button>
       </template>
     </b-table>
 
@@ -24,6 +24,13 @@ import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
 import Portfolio from "@/model/Portfolio/Portfolio";
 import TableTitle from "@/components/TableTitle.vue";
+import Allocation from "@/model/Portfolio/Allocation";
+import OrderClient from "@/api/Finizens/Order/OrderClient";
+import Order from "@/model/Order/Order";
+import OrderType from "@/model/Order/OrderType";
+import OrderStatus from "@/model/Order/OrderStatus";
+import Generator from "../../ValueObject/Generator";
+import EventBus from "@/EventBus";
 
 @Component({
   components: {
@@ -36,15 +43,35 @@ export default class ListAllocations extends Vue {
   @Prop({required: true, type: Number}) public portfolioId!: number;
 
   private readonly portfolioClient = new PortfolioClient();
+  private readonly orderClient = new OrderClient();
+
   public portfolio: Portfolio | null = null;
 
-  sellAllocation(allocationId: number) {
-    console.log('allocationId: ' + allocationId);
+  created() {
+    EventBus.on('orderCompleted', this.onOrderCompleted);
+  }
+
+  async sellAllocation(allocation: Allocation) {
+    const sellOrder = new Order(
+        Generator.randomInt(),
+        this.portfolioId,
+        allocation.id,
+        allocation.shares,
+        OrderType.sell(),
+        OrderStatus.pending()
+    );
+
+    await this.orderClient.create(sellOrder);
+    EventBus.emit('orderCreated', sellOrder);
   }
 
   @Watch('portfolioId')
   async onChangePortfolioId(newPortfolioId: number) {
     this.portfolio = await this.portfolioClient.byId(newPortfolioId);
+  }
+
+  async onOrderCompleted(order: Order) {
+    this.portfolio = await this.portfolioClient.byId(order.portfolioId);
   }
 }
 </script>

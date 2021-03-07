@@ -1,3 +1,5 @@
+import Order from "@/model/Order/Order";
+
 export default class OrderType {
 
     private static readonly BUY = "buy";
@@ -17,5 +19,13 @@ export default class OrderType {
 
     public isSell(): boolean {
         return OrderType.SELL === this.value;
+    }
+
+    static sell(): OrderType {
+        return new OrderType(this.SELL);
+    }
+
+    static buy(): OrderType {
+        return new OrderType(this.BUY);
     }
 }
