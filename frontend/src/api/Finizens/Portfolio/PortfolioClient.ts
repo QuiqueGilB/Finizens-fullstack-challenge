@@ -1,6 +1,7 @@
-import FinizensApi, {apiCollection, Meta} from "@/api/Finizens/FinizensApi";
+import FinizensApi, {apiCollection} from "@/api/Finizens/FinizensApi";
 import Portfolio from "@/model/Portfolio/Portfolio";
 import Allocation from "@/model/Portfolio/Allocation";
+
 
 type allocationResponse = {
     id: number;

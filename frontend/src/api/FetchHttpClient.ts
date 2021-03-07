@@ -5,25 +5,25 @@ export default class FetchHttpClient implements HttpClient {
     get<T>(
         url: string,
         headers: {} | null = null,
-        query: { [key: string]: any } | null = null,
+        query: { [key: string]: string | number } | null = null,
     ): Promise<T> {
         return FetchHttpClient.request<T>('GET', url, headers || {}, query || {}, null);
     }
 
-    post(
+    post<T>(
         url: string,
         headers: { [key: string]: string } | null,
         body: {} | null
-    ): any {
-        return FetchHttpClient.request('POST', url, headers || {}, {}, body);
+    ): Promise<T> {
+        return FetchHttpClient.request<T>('POST', url, headers || {}, {}, body);
     }
 
-    put(
+    put<T>(
         url: string,
         headers: { [key: string]: string } | null,
         body: {} | null
-    ): any {
-        return FetchHttpClient.request('PUT', url, headers || {}, {}, body);
+    ): Promise<T> {
+        return FetchHttpClient.request<T>('PUT', url, headers || {}, {}, body);
     }
 
 
@@ -31,13 +31,13 @@ export default class FetchHttpClient implements HttpClient {
         method: "GET" | "POST" | "PUT" | "PATH" | "DELETE",
         url: string,
         headers: { [key: string]: string },
-        query: { [key: string]: string },
+        query: { [key: string]: string | number },
         body: {} | null
     ): Promise<T> {
         const httpUrl = new URL(url);
 
         for (const queryKey in query) {
-            httpUrl.searchParams.append(queryKey, query[queryKey]);
+            httpUrl.searchParams.append(queryKey, query[queryKey] as string);
         }
 
         const requestData: RequestInit = {
