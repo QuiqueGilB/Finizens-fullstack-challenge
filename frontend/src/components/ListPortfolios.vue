@@ -1,7 +1,8 @@
 <template>
 
   <b-list-group>
-    <b-list-group-item :key="portfolio.id"
+    <b-list-group-item class="bg-transparent text-light text-left btn"
+                       :key="portfolio.id"
                        v-for="portfolio in this.portfolios"
                        @click="selectPortfolio(portfolio.id)"
     >

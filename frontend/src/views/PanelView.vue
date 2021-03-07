@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="vh-100">
 
-    <b-row no-gutters>
+    <b-row no-gutters class="vh-100">
 
-      <b-col lg="2" md="3">
+      <b-col lg="2" md="3" class="vh-100 bg-dark">
         <b-img src="/finizens.png" fluid/>
 
-        <b-button squared variant="outline-secondary">
+        <b-button squared variant="primary" block size="md" class="py-3">
           <b-icon icon="plus-circle"></b-icon>
           New portfolio
         </b-button>
@@ -15,13 +15,14 @@
       </b-col>
 
 
-      <b-col>
+      <b-col class="vh-100">
         <h1 class="text-left m-5 my-30 font-weight-bold">Portfolio {{ this.portfolioIdSelected || '' }}</h1>
 
         <b-row no-gutters>
 
           <b-col cols="3" class="border mx-2">
             <ListAllocations
+                title="Allocations"
                 :v-if="0 !== portfolioIdSelected"
                 :portfolioId="this.portfolioIdSelected"
             />
@@ -29,6 +30,7 @@
 
           <b-col class="border mx-2">
             <ListOrders :v-if="0 !== portfolioIdSelected"
+                        title="Orders"
                         :portfolioId="this.portfolioIdSelected"/>
           </b-col>
 

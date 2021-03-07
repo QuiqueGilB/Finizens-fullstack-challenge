@@ -1,15 +1,19 @@
 <template>
 
-  <b-table :fields="['id', 'shares', 'actions']"
-           :items="this.portfolio.allocations"
-           hover
-           responsive
-           v-if="this.portfolio"
-  >
-    <template #cell(actions)="data">
-      <b-button size="sm" variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>
-    </template>
-  </b-table>
+  <div>
+    <TableTitle v-if="title" :title="title"/>
+    <b-table :fields="['id', 'shares', 'actions']"
+             :items="this.portfolio.allocations"
+             hover
+             responsive
+             v-if="this.portfolio"
+    >
+      <template #cell(actions)="data">
+        <b-button size="sm" variant="outline-danger" @click="sellAllocation(data.item.id)">Sell</b-button>
+      </template>
+    </b-table>
+
+  </div>
 
 </template>
 
@@ -19,11 +23,17 @@
 import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import PortfolioClient from "@/api/Finizens/Portfolio/PortfolioClient";
 import Portfolio from "@/model/Portfolio/Portfolio";
+import TableTitle from "@/components/TableTitle.vue";
 
-@Component
+@Component({
+  components: {
+    TableTitle
+  }
+})
 export default class ListAllocations extends Vue {
 
-  @Prop({required: true, type: Number}) public portfolioId: number;
+  @Prop({required: false, type: String}) public title!: string;
+  @Prop({required: true, type: Number}) public portfolioId!: number;
 
   private readonly portfolioClient = new PortfolioClient();
   public portfolio: Portfolio | null = null;
@@ -34,7 +44,7 @@ export default class ListAllocations extends Vue {
 
   @Watch('portfolioId')
   async onChangePortfolioId(newPortfolioId: number) {
-    this.portfolio = await this.portfolioClient.byId(this.portfolioId);
+    this.portfolio = await this.portfolioClient.byId(newPortfolioId);
   }
 }
 </script>
