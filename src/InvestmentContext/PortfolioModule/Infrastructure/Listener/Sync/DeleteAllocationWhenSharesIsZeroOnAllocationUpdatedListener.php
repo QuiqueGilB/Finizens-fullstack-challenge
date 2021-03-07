@@ -3,7 +3,9 @@
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Infrastructure\Listener\Sync;
 
 use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\DeleteAllocation\DeleteAllocationCommand;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Command\DeleteAllocation\DeleteAllocationCommandHandler;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindAllocation\FindAllocationByIdQuery;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Application\Query\FindAllocation\FindAllocationByIdQueryHandler;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\AllocationUpdated;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Response\AllocationResponse;
 use FinizensChallenge\SharedContext\CqrsModule\Domain\Model\CommandBus;
@@ -14,8 +16,8 @@ use FinizensChallenge\SharedContext\EventModule\Infrastructure\Listener\BaseSync
 class DeleteAllocationWhenSharesIsZeroOnAllocationUpdatedListener extends BaseSyncListener
 {
     public function __construct(
-        private QueryBus $queryBus,
-        private CommandBus $commandBus
+        private FindAllocationByIdQueryHandler $findAllocationByIdQueryHandler,
+        private DeleteAllocationCommandHandler $deleteAllocationCommandHandler
     ) {
     }
 
@@ -40,13 +42,13 @@ class DeleteAllocationWhenSharesIsZeroOnAllocationUpdatedListener extends BaseSy
             $allocationId
         );
 
-        $this->commandBus->handle($command);
+        $this->deleteAllocationCommandHandler->handle($command);
     }
 
     private function findAllocation(int $allocationId): AllocationResponse
     {
         $query = FindAllocationByIdQuery::create($allocationId);
-        $queryResponse = $this->queryBus->handle($query);
+        $queryResponse = $this->findAllocationByIdQueryHandler->handle($query);
         return $queryResponse->data()->value();
     }
 }
