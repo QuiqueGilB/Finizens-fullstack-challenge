@@ -4,7 +4,7 @@
     <b-row no-gutters>
 
       <b-col lg="2" md="3">
-        <b-img :src="finizensLogo" fluid/>
+        <b-img src="/finizens.png" fluid/>
 
         <b-button squared variant="outline-secondary">
           <b-icon icon="plus-circle"></b-icon>
@@ -49,7 +49,6 @@ import ListAllocations from "@/components/ListAllocations.vue";
 import ListOrders from "@/components/ListOrders.vue";
 import ListPortfolios from "@/components/ListPortfolios.vue";
 import {Component, Vue} from "vue-property-decorator";
-import finizensLogo from '@/assets/finizens.png';
 
 @Component({
   components: {
@@ -60,7 +59,6 @@ import finizensLogo from '@/assets/finizens.png';
 })
 export default class PanelView extends Vue {
   public portfolioIdSelected = 0;
-  public finizensLogo = finizensLogo;
 
   public onPortfolioSelected(portfolioId: number) {
     this.portfolioIdSelected = portfolioId;
