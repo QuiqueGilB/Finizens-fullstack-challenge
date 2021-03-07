@@ -101,7 +101,7 @@ class Portfolio
     public function deleteAllocation(Allocation $allocation): self
     {
         foreach ($this->allocations as $key => $portfolioAllocation) {
-            if ($allocation->id()->equal($allocation->id())) {
+            if ($allocation->id()->equal($portfolioAllocation->id())) {
                 $portfolioAllocation->delete();
                 $this->allocations->remove($key);
                 break;
