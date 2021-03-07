@@ -44,6 +44,15 @@ export default class OrderClient extends FinizensApi {
             });
     }
 
+    complete(orderId: number): Promise<void> {
+        return this.httpClient
+            .post(
+                `${this.apiUrl}/complete`,
+                null,
+                {id: orderId}
+            );
+    }
+
     private static cast(orderResponse: orderResponse): Order {
         return new Order(
             orderResponse.id,

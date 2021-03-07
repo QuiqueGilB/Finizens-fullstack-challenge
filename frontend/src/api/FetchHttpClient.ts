@@ -40,9 +40,11 @@ export default class FetchHttpClient implements HttpClient {
             httpUrl.searchParams.append(queryKey, query[queryKey] as string);
         }
 
+        Object.assign(headers,{'Content-Type':'application/json'});
+
         const requestData: RequestInit = {
             method,
-            headers: headers || {},
+            headers: headers,
             body: JSON.stringify(body)
         };
 

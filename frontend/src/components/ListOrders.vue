@@ -9,7 +9,7 @@
              hover
     >
       <template #cell(actions)="data">
-        <b-button size="sm" variant="outline-info" @click="completeOrder(data.item.id)">Complete</b-button>
+        <b-button size="sm" variant="outline-info" @click="completeOrder(data.item)">Complete</b-button>
       </template>
 
       <template #cell(orderType)="data">
@@ -57,8 +57,12 @@ export default class ListOrders extends Vue {
     this.orders = (await this.orderClient.search(criteria)).data;
   }
 
-  completeOrder(orderId: number) {
-    console.log('orderId: ' + orderId);
+  async completeOrder(order: Order) {
+    await this.orderClient.complete(order.id);
+    this.$emit('orderCompleted', order);
+
+    const index = this.orders.indexOf(order);
+    this.orders.splice(index, 1)
   }
 }
 </script>
