@@ -10,24 +10,26 @@
           <b-icon icon="plus-circle"></b-icon>
           New portfolio
         </b-button>
+
         <ListPortfolios v-on:portfolioSelected="onPortfolioSelected"/>
       </b-col>
 
 
       <b-col>
-        <h1 class="text-left m-5 my-30 font-weight-bold">Portfolio {{ this.portfolioIdSelected }}</h1>
+        <h1 class="text-left m-5 my-30 font-weight-bold">Portfolio {{ this.portfolioIdSelected || '' }}</h1>
 
         <b-row no-gutters>
 
           <b-col cols="3" class="border mx-2">
             <ListAllocations
-                :v-if="0!==portfolioIdSelected"
+                :v-if="0 !== portfolioIdSelected"
                 :portfolioId="this.portfolioIdSelected"
             />
           </b-col>
 
           <b-col class="border mx-2">
-            <ListOrders :orders="this.orders"/>
+            <ListOrders :v-if="0 !== portfolioIdSelected"
+                        :portfolioId="this.portfolioIdSelected"/>
           </b-col>
 
         </b-row>
@@ -59,22 +61,6 @@ import finizensLogo from '@/assets/finizens.png';
 export default class PanelView extends Vue {
   public portfolioIdSelected = 0;
   public finizensLogo = finizensLogo;
-
-
-  public orders = [
-    {
-      id: 1,
-      allocation: 2,
-      shares: 3,
-      portfolio: 1
-    },
-    {
-      id: 2,
-      allocation: 5,
-      shares: 34,
-      portfolio: 1
-    }
-  ];
 
   public onPortfolioSelected(portfolioId: number) {
     this.portfolioIdSelected = portfolioId;

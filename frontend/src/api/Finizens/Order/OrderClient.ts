@@ -1,4 +1,4 @@
-import FinizensApi, {QueryParams} from "@/api/Finizens/FinizensApi";
+import FinizensApi, {apiCollection, QueryParams} from "@/api/Finizens/FinizensApi";
 import Order from "@/model/Order/Order";
 import OrderType from "@/model/Order/OrderType";
 import OrderStatus from "@/model/Order/OrderStatus";
@@ -8,8 +8,8 @@ type orderResponse = {
     portfolio: number;
     allocation: number;
     shares: number;
-    orderType: string;
-    orderStatus: string;
+    type: string;
+    status: string;
 };
 
 export default class OrderClient extends FinizensApi {
@@ -28,16 +28,19 @@ export default class OrderClient extends FinizensApi {
             );
     }
 
-    search(query: QueryParams): Promise<Order[]> {
+    search(query: QueryParams): Promise<apiCollection<Order[]>> {
         return this.httpClient
-            .get<orderResponse[]>(
+            .get<apiCollection<orderResponse[]>>(
                 `${this.apiUrl}/orders`,
                 null,
                 query
-            ).then((response: orderResponse[]) => {
-                return response.map((orderResponse: orderResponse) => {
-                    return OrderClient.cast(orderResponse);
-                })
+            ).then(response => {
+                return {
+                    data: response.data.map((orderResponse: orderResponse) => {
+                        return OrderClient.cast(orderResponse);
+                    }),
+                    meta: response.meta
+                }
             });
     }
 
@@ -47,8 +50,8 @@ export default class OrderClient extends FinizensApi {
             orderResponse.portfolio,
             orderResponse.allocation,
             orderResponse.shares,
-            new OrderType(orderResponse.orderType),
-            new OrderStatus(orderResponse.orderStatus)
+            new OrderType(orderResponse.type),
+            new OrderStatus(orderResponse.status)
         )
     }
 }

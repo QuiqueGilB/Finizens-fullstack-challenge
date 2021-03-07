@@ -1,12 +1,21 @@
 <template>
 
-  <b-table :fields="['id', 'portfolio', 'allocation', 'shares', 'actions']"
+  <b-table :fields="['id', 'allocationId', 'shares', 'orderType', 'orderStatus', 'actions']"
            :items="orders"
            hover
   >
     <template #cell(actions)="data">
-      <b-button variant="outline-info" @click="completeOrder(data.item.id)">Complete</b-button>
+      <b-button size="sm" variant="outline-info" @click="completeOrder(data.item.id)">Complete</b-button>
     </template>
+
+    <template #cell(orderType)="data">
+      {{data.item.orderType.value}}
+    </template>
+
+    <template #cell(orderStatus)="data">
+      {{data.item.orderStatus.value}}
+    </template>
+
   </b-table>
 
 </template>
@@ -14,12 +23,26 @@
 
 <script lang="ts">
 
-import {Component, Prop, Vue} from "vue-property-decorator";
+import {Component, Prop, Vue, Watch} from "vue-property-decorator";
+import OrderClient from "@/api/Finizens/Order/OrderClient";
+import Order from "@/model/Order/Order";
+import {QueryParams} from "@/api/Finizens/FinizensApi";
 
 @Component
 export default class ListOrders extends Vue {
+
+  private readonly orderClient = new OrderClient();
+
   @Prop()
-  readonly orders!: Array<any>;
+  readonly portfolioId: number = 0;
+  public orders: Order[] = [];
+  public readonly criteria: { [key: string]: string | number } = {};
+
+
+  @Watch('portfolioId')
+  async onPortfolioIdChanged(newPortfolioId: number) {
+    this.orders = (await this.orderClient.search()).data;
+  }
 
   completeOrder(orderId: number) {
     console.log('orderId: ' + orderId);
