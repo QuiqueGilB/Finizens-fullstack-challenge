@@ -13,7 +13,8 @@
     <div class="fixed-bottom">
 
       <div class="d-flex flex-row-reverse">
-        <span class="p-4">Finizens Challenge 2021 by <a target="_blank" href="https://enriquegil.me">@QuiqueGilB</a></span>
+        <span class="p-4">Finizens Challenge 2021 by <a target="_blank"
+                                                        href="https://enriquegil.me">@QuiqueGilB</a></span>
       </div>
 
     </div>
@@ -26,10 +27,22 @@
 <script lang="ts">
 
 import {Component, Vue} from "vue-property-decorator";
+import EventBus from "@/EventBus";
 
 @Component
 export default class App extends Vue {
 
+  created() {
+    EventBus.on('error', this.onError);
+  }
+
+  async onError(error) {
+    this.$bvToast.toast('Unexpected error has occurred, please try again later.', {
+      title: "Warning",
+      variant: 'danger',
+      solid: true
+    })
+  }
 }
 
 </script>

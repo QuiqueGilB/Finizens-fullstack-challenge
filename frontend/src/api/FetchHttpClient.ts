@@ -1,4 +1,5 @@
 import HttpClient from "@/api/HttpClient";
+import EventBus from "@/EventBus";
 
 export default class FetchHttpClient implements HttpClient {
 
@@ -40,7 +41,7 @@ export default class FetchHttpClient implements HttpClient {
             httpUrl.searchParams.append(queryKey, query[queryKey] as string);
         }
 
-        Object.assign(headers,{'Content-Type':'application/json'});
+        Object.assign(headers, {'Content-Type': 'application/json'});
 
         const requestData: RequestInit = {
             method,
@@ -71,7 +72,7 @@ export default class FetchHttpClient implements HttpClient {
                 return response as unknown as Promise<T>;
             })
             .catch((error) => {
-                console.error(error);
+                EventBus.emit('error', error)
                 throw error
             })
     }
