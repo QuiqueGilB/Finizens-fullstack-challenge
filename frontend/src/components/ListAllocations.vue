@@ -29,7 +29,7 @@ import OrderClient from "@/api/Finizens/Order/OrderClient";
 import Order from "@/model/Order/Order";
 import OrderType from "@/model/Order/OrderType";
 import OrderStatus from "@/model/Order/OrderStatus";
-import Generator from "../../ValueObject/Generator";
+import Generator from "@/ValueObject/Generator";
 import EventBus from "@/EventBus";
 
 @Component({

@@ -2,7 +2,17 @@
 
   <div>
 
-    <TableTitle v-if="title" :title="title"/>
+    <BuyOrderModal modalId="modal-buy-order" :portfolioId="portfolioId" />
+
+    <TableTitle v-if="title" :title="title">
+      <b-button size="sm"
+                squared
+                variant="outline-success"
+                v-b-modal.modal-buy-order
+      >
+        Buy
+      </b-button>
+    </TableTitle>
 
     <b-table :fields="['id', 'allocationId', 'shares', 'orderType', 'orderStatus', 'actions']"
              :items="orders"
@@ -33,10 +43,12 @@ import OrderClient from "@/api/Finizens/Order/OrderClient";
 import Order from "@/model/Order/Order";
 import TableTitle from "@/components/TableTitle.vue";
 import EventBus from "@/EventBus";
+import BuyOrderModal from "@/components/BuyOrderModal.vue";
 
 @Component({
   components: {
-    TableTitle
+    TableTitle,
+    BuyOrderModal
   }
 })
 export default class ListOrders extends Vue {
