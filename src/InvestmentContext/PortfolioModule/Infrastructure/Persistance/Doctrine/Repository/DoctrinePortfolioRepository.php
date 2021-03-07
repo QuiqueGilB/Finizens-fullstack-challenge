@@ -72,7 +72,7 @@ class DoctrinePortfolioRepository extends ServiceEntityRepository implements Por
     private static function mapFields(): array
     {
         return [
-            'id' => 'portfolio.id'
+            'createdAt' => 'portfolio.createdAt'
         ];
     }
 

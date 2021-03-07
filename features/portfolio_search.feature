@@ -38,7 +38,7 @@ Feature: Search Portfolios
       ]
     }
     """
-    When I send a GET request to "/portfolio?order=id desc&limit=1"
+    When I send a GET request to "/portfolio?order=createdAt desc&limit=1"
     Then the response status code should be 200
     And the response body should be:
     """
