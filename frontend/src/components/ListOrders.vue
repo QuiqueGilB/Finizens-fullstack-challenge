@@ -26,7 +26,6 @@
 import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import OrderClient from "@/api/Finizens/Order/OrderClient";
 import Order from "@/model/Order/Order";
-import {QueryParams} from "@/api/Finizens/FinizensApi";
 
 @Component
 export default class ListOrders extends Vue {
@@ -41,7 +40,10 @@ export default class ListOrders extends Vue {
 
   @Watch('portfolioId')
   async onPortfolioIdChanged(newPortfolioId: number) {
-    this.orders = (await this.orderClient.search()).data;
+    const criteria = {
+      filters: `portfolio = ${this.portfolioId} and status = pending`
+    };
+    this.orders = (await this.orderClient.search(criteria)).data;
   }
 
   completeOrder(orderId: number) {
