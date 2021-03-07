@@ -3,11 +3,15 @@
 namespace FinizensChallenge\InvestmentContext\OrderModule\Infrastructure\Persistance\Doctrine\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Criteria\OrderCriteria;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderNotFoundException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\Order;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Model\OrderRepository;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
+use QuiqueGilB\GlobalApiCriteria\CriteriaModule\Criteria\Application\Apply\DoctrineApplyCriteria;
+use QuiqueGilB\GlobalApiCriteria\CriteriaModule\Filter\Application\Apply\DoctrineApplyFilter;
 
 class DoctrineOrderRepository extends ServiceEntityRepository implements OrderRepository
 {
@@ -36,4 +40,40 @@ class DoctrineOrderRepository extends ServiceEntityRepository implements OrderRe
     {
         $this->_em->persist($order);
     }
+
+    public function search(OrderCriteria $criteria): array
+    {
+        $queryBuilder = $this->baseCriteriaQueryBuilder();
+        DoctrineApplyCriteria::apply($queryBuilder, $criteria, self::mapFields());
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    public function countSearch(OrderCriteria $criteria): int
+    {
+        $queryBuilder = $this->baseCriteriaQueryBuilder()
+            ->select('COUNT(_order)');
+
+        DoctrineApplyFilter::apply($queryBuilder, $criteria->filters(), self::mapFields());
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
+    private function baseCriteriaQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('_order');
+    }
+
+    private static function mapFields(): array
+    {
+        return [
+            'portfolio' => '_order.portfolioId',
+            'allocation' => '_order.allocationId',
+            'type' => '_order.orderType.value',
+            'status' => '_order.orderStatus.value',
+            'createdAt' => '_order.createdAt'
+        ];
+    }
+
+
 }

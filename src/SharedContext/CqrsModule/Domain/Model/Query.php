@@ -16,13 +16,13 @@ class Query extends CQRS
         return $this->data['order'] ?? null;
     }
 
-    public function offset(): ?int
+    public function offset(): int
     {
-        return $this->data['offset'] ?? null;
+        return $this->data['offset'] ?? 0;
     }
 
-    public function limit(): ?int
+    public function limit(): int
     {
-        return $this->data['limit'] ?? null;
+        return $this->data['limit'] ?? 0;
     }
 }
