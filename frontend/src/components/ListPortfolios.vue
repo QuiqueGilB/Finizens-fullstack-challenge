@@ -24,7 +24,7 @@ export default class ListPortfolios extends Vue {
   public portfolios: Portfolio[] = [];
 
   async created() {
-    this.portfolios = await this.portfolioClient.all();
+    this.portfolios = (await this.portfolioClient.search()).data;
 
     if (this.portfolios.length > 0) {
       this.selectPortfolio(this.portfolios[0].id);

@@ -7,6 +7,18 @@ export type QueryParams = {
     limit: number;
 }
 
+export type Meta = {
+    offset: number;
+    limit: number;
+    items: number;
+    total: number;
+}
+
+export type apiCollection<T> = {
+    data: T;
+    meta: Meta;
+}
+
 export default class FinizensApi {
 
     constructor(
