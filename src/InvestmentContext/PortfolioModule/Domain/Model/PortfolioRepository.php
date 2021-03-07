@@ -2,6 +2,7 @@
 
 namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Criteria\PortfolioCriteria;
 use FinizensChallenge\SharedContext\SharedModule\Domain\ValueObject\NumericId;
 
 interface PortfolioRepository
@@ -13,4 +14,12 @@ interface PortfolioRepository
     public function allocationById(NumericId $allocationId): ?Allocation;
 
     public function save(Portfolio $portfolio): void;
+
+    /**
+     * @param PortfolioCriteria $portfolioCriteria
+     * @return Portfolio[]
+     */
+    public function search(PortfolioCriteria $portfolioCriteria): array;
+
+    public function countSearch(PortfolioCriteria $portfolioCriteria): int;
 }
