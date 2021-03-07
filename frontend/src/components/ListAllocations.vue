@@ -56,8 +56,8 @@ export default class ListAllocations extends Vue {
         Generator.randomInt(),
         this.portfolioId,
         allocation.id,
-        allocation.shares,
-        OrderType.sell(),
+        Math.abs(allocation.shares),
+        allocation.shares > 0 ? OrderType.sell() : OrderType.buy(),
         OrderStatus.pending()
     );
 
