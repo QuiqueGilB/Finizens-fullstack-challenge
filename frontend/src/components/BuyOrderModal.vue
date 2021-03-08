@@ -13,7 +13,7 @@
         <label>Allocation:</label>
       </b-col>
       <b-col sm="9">
-        <b-form-input type="number" v-model="formBuyOrder.allocation"></b-form-input>
+        <b-form-input type="number" number v-model="formBuyOrder.allocation"></b-form-input>
       </b-col>
     </b-row>
     <b-row class="my-1 py-2">
@@ -21,7 +21,7 @@
         <label>Shares:</label>
       </b-col>
       <b-col sm="9">
-        <b-form-input type="number" v-model="formBuyOrder.shares" min="1"></b-form-input>
+        <b-form-input type="number" number v-model="formBuyOrder.shares" min="1"></b-form-input>
       </b-col>
     </b-row>
   </b-modal>
@@ -44,8 +44,8 @@ export default class BuyOrderModal extends Vue {
   private readonly orderClient = new OrderClient();
 
   private readonly formBuyOrder = {
-    allocation: undefined,
-    shares: undefined,
+    allocation: Generator.randomInt(),
+    shares: Generator.randomIntBetween(1, 300),
   }
 
   @Prop({required: true, type: String}) readonly modalId!: string;
@@ -55,8 +55,8 @@ export default class BuyOrderModal extends Vue {
     const order = new Order(
         Generator.randomInt(),
         this.portfolioId,
-        parseInt(this.formBuyOrder.allocation),
-        parseInt(this.formBuyOrder.shares),
+        this.formBuyOrder.allocation,
+        this.formBuyOrder.shares,
         OrderType.buy(),
         OrderStatus.pending()
     );
@@ -64,8 +64,8 @@ export default class BuyOrderModal extends Vue {
     await this.orderClient.create(order);
     EventBus.emit('orderCreated', order);
 
-    this.formBuyOrder.allocation = undefined;
-    this.formBuyOrder.shares = undefined;
+    this.formBuyOrder.allocation = Generator.randomInt();
+    this.formBuyOrder.shares = Generator.randomIntBetween(1, 300);
   }
 
 }

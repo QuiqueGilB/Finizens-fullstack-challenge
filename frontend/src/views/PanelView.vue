@@ -1,12 +1,20 @@
 <template>
   <div class="vh-100">
 
+    <PortfolioModal modalId="modal-create-portfolio" :portfolioId="this.newPortfolioId"/>
+
     <b-row no-gutters class="vh-100">
 
       <b-col lg="2" md="3" class="vh-100 bg-dark">
         <b-img src="/finizens.png" fluid/>
 
-        <b-button squared variant="primary" block size="md" class="py-3">
+        <b-button squared
+                  variant="primary"
+                  block
+                  size="md"
+                  class="py-3"
+                  v-b-modal.modal-create-portfolio
+                  @click="onNewPortfolioButtonClicked">
           <b-icon icon="plus-circle"></b-icon>
           New portfolio
         </b-button>
@@ -50,19 +58,28 @@
 import ListAllocations from "@/components/ListAllocations.vue";
 import ListOrders from "@/components/ListOrders.vue";
 import ListPortfolios from "@/components/ListPortfolios.vue";
+import PortfolioModal from "@/components/PortfolioModal.vue";
 import {Component, Vue} from "vue-property-decorator";
+import Generator from "@/ValueObject/Generator";
+import EventBus from "@/EventBus";
 
 @Component({
   components: {
     ListAllocations,
     ListOrders,
-    ListPortfolios
+    ListPortfolios,
+    PortfolioModal
   }
 })
 export default class PanelView extends Vue {
   public portfolioIdSelected = 0;
+  public newPortfolioId?: number = Generator.randomInt();
 
-  public onPortfolioSelected(portfolioId: number) {
+  onNewPortfolioButtonClicked() {
+    this.newPortfolioId = Generator.randomInt();
+  }
+
+  onPortfolioSelected(portfolioId: number) {
     this.portfolioIdSelected = portfolioId;
   }
 }

@@ -36,7 +36,7 @@ export default class App extends Vue {
     EventBus.on('error', this.onError);
   }
 
-  async onError(error) {
+  async onError(error: any) {
     this.$bvToast.toast('Unexpected error has occurred, please try again later.', {
       title: "Warning",
       variant: 'danger',

@@ -31,6 +31,12 @@ export default class ListPortfolios extends Vue {
     if (this.portfolios.length > 0) {
       this.selectPortfolio(this.portfolios[0].id);
     }
+
+    EventBus.on('portfolioCreated', this.onPortfolioCreated);
+  }
+
+  onPortfolioCreated(portfolio: Portfolio) {
+    this.portfolios.push(portfolio);
   }
 
   selectPortfolio(portfolioId: number) {

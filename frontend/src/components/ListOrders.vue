@@ -2,7 +2,7 @@
 
   <div>
 
-    <BuyOrderModal modalId="modal-buy-order" :portfolioId="portfolioId" />
+    <BuyOrderModal modalId="modal-buy-order" :portfolioId="portfolioId"/>
 
     <TableTitle v-if="title" :title="title">
       <b-button size="sm"
@@ -44,6 +44,7 @@ import Order from "@/model/Order/Order";
 import TableTitle from "@/components/TableTitle.vue";
 import EventBus from "@/EventBus";
 import BuyOrderModal from "@/components/BuyOrderModal.vue";
+import Portfolio from "@/model/Portfolio/Portfolio";
 
 @Component({
   components: {
@@ -63,6 +64,7 @@ export default class ListOrders extends Vue {
 
   created() {
     EventBus.on('orderCreated', this.onOrderCreated)
+    EventBus.on('portfolioUpdated', this.onPortfolioUpdated)
   }
 
   async onOrderCreated(order: Order) {
@@ -75,6 +77,10 @@ export default class ListOrders extends Vue {
       filters: `portfolio = ${newPortfolioId} and status = pending`
     };
     this.orders = (await this.orderClient.search(criteria)).data;
+  }
+
+  onPortfolioUpdated(portfolio: Portfolio) {
+    this.onPortfolioIdChanged(portfolio.id);
   }
 
   async completeOrder(order: Order) {

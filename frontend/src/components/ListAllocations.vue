@@ -1,7 +1,18 @@
 <template>
 
   <div>
-    <TableTitle v-if="title" :title="title"/>
+
+    <PortfolioModal action="update"
+                    :portfolioId="this.portfolioId"
+                    modalId="modal-portfolio-update"
+    />
+
+    <TableTitle v-if="title" :title="title">
+      <b-button size="sm" variant="outline-light" v-b-modal.modal-portfolio-update>
+        Edit
+      </b-button>
+    </TableTitle>
+
     <b-table :fields="['id', 'shares', 'actions']"
              :items="this.portfolio.allocations"
              hover
@@ -31,10 +42,12 @@ import OrderType from "@/model/Order/OrderType";
 import OrderStatus from "@/model/Order/OrderStatus";
 import Generator from "@/ValueObject/Generator";
 import EventBus from "@/EventBus";
+import PortfolioModal from "@/components/PortfolioModal.vue";
 
 @Component({
   components: {
-    TableTitle
+    TableTitle,
+    PortfolioModal
   }
 })
 export default class ListAllocations extends Vue {
@@ -49,6 +62,7 @@ export default class ListAllocations extends Vue {
 
   created() {
     EventBus.on('orderCompleted', this.onOrderCompleted);
+    EventBus.on('portfolioUpdated', this.onPortfolioUpdated);
   }
 
   async sellAllocation(allocation: Allocation) {
@@ -72,6 +86,12 @@ export default class ListAllocations extends Vue {
 
   async onOrderCompleted(order: Order) {
     this.portfolio = await this.portfolioClient.byId(order.portfolioId);
+  }
+
+  async onPortfolioUpdated(portfolio: Portfolio) {
+    if (portfolio.id === this.portfolioId) {
+      this.portfolio = await this.portfolioClient.byId(portfolio.id);
+    }
   }
 }
 </script>

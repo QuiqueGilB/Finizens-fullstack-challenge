@@ -1,5 +1,3 @@
-import Order from "@/model/Order/Order";
-
 export default class OrderType {
 
     private static readonly BUY = "buy";

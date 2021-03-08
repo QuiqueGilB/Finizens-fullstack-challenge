@@ -1,5 +1,3 @@
-import Order from "@/model/Order/Order";
-
 export default class OrderStatus {
 
     private static readonly PENDING = "pending";
