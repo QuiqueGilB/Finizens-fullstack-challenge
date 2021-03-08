@@ -1,4 +1,12 @@
-# Finizens' FullStack Challenge
+# Finizens' FullStack Challenge QuiqueGilB
+## Installation
+```shell
+    make build
+```
+#### Commands
+- Run test: ``make test``
+- Run install deps: ``make install``
+- Up containers: ``make up``
 
 ## Instructions
 
