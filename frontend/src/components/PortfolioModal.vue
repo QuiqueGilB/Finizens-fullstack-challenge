@@ -95,8 +95,8 @@ export default class PortfolioModal extends Vue {
     this.portfolio?.allocations.push(new Allocation(Generator.randomInt(), Generator.randomIntBetween(1, 100)));
   }
 
-  onDeleteButtonClicked(allocationId: Allocation) {
-    this.portfolio.allocations.splice(this.portfolio.allocations.indexOf(allocationId), 1);
+  onDeleteButtonClicked(allocation: Allocation) {
+    this.portfolio.allocations.splice(this.portfolio.allocations.indexOf(allocation), 1);
   }
 
 }
