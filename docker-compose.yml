@@ -61,6 +61,17 @@ services:
             - .:/app
         command: install
 
+    front:
+        container_name: finizens-front
+        image: node:lts-alpine
+        volumes:
+        -   ./frontend:/app
+        working_dir: /app
+#        entrypoint: /usr/local/bin/npm
+        command: npm run serve
+        ports:
+        -   5505:8080
+
 volumes:
     volume-db-main:
     volume-db-main-test:

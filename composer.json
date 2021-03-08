@@ -8,7 +8,6 @@
     "require": {
         "php": ">=8.0",
         "ext-ctype": "*",
-        "ext-http": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.12",
