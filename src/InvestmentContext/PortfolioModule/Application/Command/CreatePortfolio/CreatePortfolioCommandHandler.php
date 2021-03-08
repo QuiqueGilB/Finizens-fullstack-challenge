@@ -27,6 +27,8 @@ class CreatePortfolioCommandHandler
             $portfolio = new Portfolio($portfolioId);
         }
 
+        $portfolio->clean();
+
         $allocations = $this->buildAllocations($portfolio, $command->allocations());
         $portfolio->update(...$allocations);
 

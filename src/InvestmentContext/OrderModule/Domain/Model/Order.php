@@ -5,6 +5,7 @@ namespace FinizensChallenge\InvestmentContext\OrderModule\Domain\Model;
 use DateTimeImmutable;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCompleted;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderCreated;
+use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderDeleted;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Event\OrderUpdated;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\Exception\OrderAlreadyCompletedException;
 use FinizensChallenge\InvestmentContext\OrderModule\Domain\ValueObject\OrderStatus;
@@ -107,5 +108,11 @@ class Order
         $this->publishEvent(new OrderCompleted($this));
 
         return $this;
+    }
+
+    public function delete():void
+    {
+        $this->deletedAt = new DateTimeImmutable();
+        $this->publishEvent(new OrderDeleted($this));
     }
 }

@@ -11,6 +11,12 @@ interface OrderRepository
 
     public function byIdOrFail(NumericId $orderId): Order;
 
+    /**
+     * @param NumericId $portfolioId
+     * @return Order[]
+     */
+    public function byPortfolioId(NumericId $portfolioId): array;
+
     public function save(Order $order): void;
 
     /**

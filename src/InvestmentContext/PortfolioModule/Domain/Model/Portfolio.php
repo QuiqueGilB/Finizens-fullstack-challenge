@@ -5,6 +5,7 @@ namespace FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Model;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioCleaned;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioCreated;
 use FinizensChallenge\InvestmentContext\PortfolioModule\Domain\Event\PortfolioUpdated;
 use FinizensChallenge\InvestmentContext\SharedModule\Domain\ValueObject\Shares;
@@ -30,6 +31,13 @@ class Portfolio
         $this->doUpdate(null);
 
         $this->publishEvent(new PortfolioCreated($this));
+    }
+
+    public function clean(): static
+    {
+        $this->doUpdate(null);
+        $this->publishEvent(new PortfolioCleaned($this));
+        return $this;
     }
 
     public function update(?Allocation ...$allocations): self

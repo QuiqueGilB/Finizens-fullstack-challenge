@@ -43,7 +43,7 @@ class DoctrineOrderRepository extends ServiceEntityRepository implements OrderRe
 
     public function search(OrderCriteria $criteria): array
     {
-        $queryBuilder = $this->baseCriteriaQueryBuilder();
+        $queryBuilder = $this->baseQueryBuilder();
         DoctrineApplyCriteria::apply($queryBuilder, $criteria, self::mapFields());
 
         return $queryBuilder->getQuery()->getResult();
@@ -51,7 +51,7 @@ class DoctrineOrderRepository extends ServiceEntityRepository implements OrderRe
 
     public function countSearch(OrderCriteria $criteria): int
     {
-        $queryBuilder = $this->baseCriteriaQueryBuilder()
+        $queryBuilder = $this->baseQueryBuilder()
             ->select('COUNT(_order)');
 
         DoctrineApplyFilter::apply($queryBuilder, $criteria->filters(), self::mapFields());
@@ -59,9 +59,20 @@ class DoctrineOrderRepository extends ServiceEntityRepository implements OrderRe
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
-    private function baseCriteriaQueryBuilder(): QueryBuilder
+    public function byPortfolioId(NumericId $portfolioId): array
     {
-        return $this->createQueryBuilder('_order');
+        $queryBuilder = $this->baseQueryBuilder()
+            ->andWhere('_order.portfolioId = :portfolioId')
+            ->setParameter('portfolioId', $portfolioId->value());
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    private function baseQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('_order')
+            ->andWhere('_order.deletedAt IS NULL');
     }
 
     private static function mapFields(): array
