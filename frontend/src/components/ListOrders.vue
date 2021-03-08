@@ -18,8 +18,24 @@
              :items="orders"
              hover
     >
+      <template #head(orderStatus)="data">
+        {{ data.label }}
+
+        <b-dropdown right size="sm" variant="light">
+          <b-dropdown-item @click="changeFilter('completed')" href="#">Completed</b-dropdown-item>
+          <b-dropdown-item @click="changeFilter('pending')">Pending</b-dropdown-item>
+        </b-dropdown>
+
+      </template>
+
       <template #cell(actions)="data">
-        <b-button size="sm" variant="outline-info" @click="completeOrder(data.item)">Complete</b-button>
+        <b-button v-if="data.item.orderStatus.value === 'pending'"
+                  size="sm"
+                  variant="outline-info"
+                  @click="completeOrder(data.item)"
+        >
+          Complete
+        </b-button>
       </template>
 
       <template #cell(orderType)="data">
@@ -62,25 +78,38 @@ export default class ListOrders extends Vue {
   public orders: Order[] = [];
   public readonly criteria: { [key: string]: string | number } = {};
 
+  public filterStatus = 'pending';
+
   created() {
     EventBus.on('orderCreated', this.onOrderCreated)
     EventBus.on('portfolioUpdated', this.onPortfolioUpdated)
+  }
+
+  changeFilter(newStatus: string) {
+    console.log(newStatus);
+    this.filterStatus = newStatus;
+    this.loadOrders(this.portfolioId);
   }
 
   async onOrderCreated(order: Order) {
     this.orders.push(order);
   }
 
-  @Watch('portfolioId')
-  async onPortfolioIdChanged(newPortfolioId: number) {
+  private async loadOrders(portfolioId: number) {
     const criteria = {
-      filters: `portfolio = ${newPortfolioId} and status = pending`
+      filters: `portfolio = ${portfolioId} and status = ${this.filterStatus}`
     };
     this.orders = (await this.orderClient.search(criteria)).data;
+
+  }
+
+  @Watch('portfolioId')
+  onPortfolioIdChanged(newPortfolioId: number) {
+    this.loadOrders(newPortfolioId)
   }
 
   onPortfolioUpdated(portfolio: Portfolio) {
-    this.onPortfolioIdChanged(portfolio.id);
+    this.loadOrders(portfolio.id);
   }
 
   async completeOrder(order: Order) {
