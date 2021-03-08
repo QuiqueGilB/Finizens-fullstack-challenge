@@ -15,20 +15,28 @@
            :key="allocation.id"
     >
 
-      <b-col sm="6">
+      <b-col cols="5">
 
         <b-form-group label-cols="4" label="Id:">
-          <b-form-input  v-model="allocation.id" number></b-form-input>
+          <b-form-input v-model="allocation.id" number></b-form-input>
         </b-form-group>
 
       </b-col>
 
-      <b-col sm="6">
+      <b-col cols="5">
 
         <b-form-group label-cols="4" label="Shares:">
           <b-form-input v-model="allocation.shares" number></b-form-input>
         </b-form-group>
 
+      </b-col>
+
+      <b-col cols="1">
+        <b-button size="sm"
+                  variant="outline-danger"
+                  @click="onDeleteButtonClicked(allocation)"
+        > X
+        </b-button>
       </b-col>
 
     </b-row>
@@ -81,11 +89,14 @@ export default class PortfolioModal extends Vue {
             : 'portfolioUpdated',
         this.portfolio
     );
-    // this.portfolioId = Generator.randomInt();
   }
 
   addAllocation() {
     this.portfolio?.allocations.push(new Allocation(Generator.randomInt(), Generator.randomIntBetween(1, 100)));
+  }
+
+  onDeleteButtonClicked(allocationId: Allocation) {
+    this.portfolio.allocations.splice(this.portfolio.allocations.indexOf(allocationId), 1);
   }
 
 }
